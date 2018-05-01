@@ -1,4 +1,4 @@
-﻿namespace Model.EF
+namespace Model.EF
 {
     using System;
     using System.Collections.Generic;
@@ -9,14 +9,19 @@
     [Table("Course")]
     public partial class Course
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Course()
+        {
+            Enrollments = new HashSet<Enrollment>();
+            Lessons = new HashSet<Lesson>();
+        }
+
         public long ID { get; set; }
 
         [StringLength(250)]
-        [Display(Name="Tên khóa học")]
         public string Name { get; set; }
 
         [StringLength(10)]
-        [Display(Name = "Mã kích hoạt")]
         public string Code { get; set; }
 
         [StringLength(250)]
@@ -27,30 +32,24 @@
         [StringLength(250)]
         public string Image { get; set; }
 
-        [Display(Name = "Giá")]
         public decimal? Price { get; set; }
 
-        [Display(Name = "Giá khuyễn mãi")]
         public decimal? PromotonPrice { get; set; }
 
-        [Display(Name = "Chủ đề")]
-        public long? CategoryID { get; set; }
+        public long CategoryID { get; set; }
 
-
-        [Column(TypeName = "ntext")]
-        [Display(Name = "Mô tả")]
-        public string Detail { get; set; }
-
-        [Display(Name = "Ngày tạo")]
         public DateTime? CreatedDate { get; set; }
 
-        [Display(Name = "Trạng thái")]
         public bool Status { get; set; }
 
-        [Display(Name = "Số lượt xem")]
-        public int? ViewCount { get; set; }
+        public int? CountLesson { get; set; }
 
-        // Thêm
-        public virtual CourseCategory Category { get; set; }
+        public virtual CourseCategory CourseCategory { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Enrollment> Enrollments { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Lesson> Lessons { get; set; }
     }
 }

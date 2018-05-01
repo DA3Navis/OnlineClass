@@ -1,0 +1,125 @@
+﻿@*@model PagedList.IPagedList<Model.EF.Lesson>*@
+@model Model.EF.Lesson
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
+}
+
+@section header{
+    Danh sách bài giảng
+}
+
+@section jsFooter{
+    <script>
+        $(document).ready(function () {
+            $("#comboboxCate").change(function () {
+                var cateID = $('#comboboxCate option:selected').val();
+                $.ajax({
+                    type: 'GET',
+                    data: { cateID: cateID },
+                    url: "/Admin/Lessons/loadCourse",
+                    success: function (result) {
+                        var s = '<option value="-1">Chọn một khóa học</option>';
+                        for (var i = 0; i < result.length; i++) {
+                            s += '<option value="' + result[i].ID + '">' + result[i].Name + '</option>';
+                        }
+                        $('#comboboxCou').html(s);
+                    }
+                })
+            });
+
+            $("#comboboxCou").change(function () {
+                var couID = $('#comboboxCou option:selected').val();
+                $.ajax({
+                    type: 'GET',
+                    data: { couID: couID },
+                    url: "/Admin/Lessons/loadLesson",
+                    success: function (result) {
+
+                        var rows = '';
+                        for (var i = 0; i < result.length; i++) {
+                            rows += "<tr id='" + result[i].ID + "'>" +
+                                "<td>" + result[i].Title + "</td>" +
+                                "<td>" + result[i].Des + "</td>" +
+                                "<td><image width='100px' src='" + result[i].Img + "'/></td>" +
+                                "<td><a href='" + result[i].Link + "'>" + result[i].Link + "</a></td>" +
+                                "<td>" +
+                                "<a href='/Admin/Lessons/Edit/" + result[i].ID + "'>Sửa</a>" +
+                                "|" +
+                                "<a href='/Admin/Lessons/Delete/" + result[i].ID +"'>Xóa</a>" +
+
+                                "</td>" +
+                                "</tr>";
+                        };
+                        $('#show').html(rows);
+                    }
+                })
+            });
+
+            $(document).delegate('#xoa', 'click', function (e) {
+
+            e.preventDefault();
+
+            $.ajax({
+                    type: "post",
+                    url: "/Admin/Lessons/Delete",
+                    ajaxasync: true,
+                    data: { id : $('input#idField').val() },
+                    success: function () {
+
+                        alert("success");
+
+                        // Perform redirect
+                        window.location.replace("Admin/Lessons/Index");
+                    },
+                    error: function (data) {
+                        alert(data.x);
+                    }
+                });
+        });
+        });
+    </script>
+}
+
+<div>
+    <form method="post">
+        <div class="form-group">
+            <label class="control-label col-lg-2" style="text-align:right">Chủ đề</label>
+            <div class="col-lg-10">
+                <select id="comboboxCate" class="form-control">
+                    <option value="-1">Chọn một chủ đề</option>
+                    @foreach (var category in ViewBag.Cate)
+                    {
+                        <option value="@category.ID">@category.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="form-group">
+            <label class="control-label col-md-2" style="text-align:right">Khóa học</label>
+            <div class="col-md-10">
+                <select id="comboboxCou" name="CourseID" class="form-control"></select>
+            </div>
+        </div>
+
+    </form>
+    <br />
+    <br />
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Tên khóa học</th>
+                    <th>Mô tả</th>
+                    <th>Hình ảnh</th>
+                    <th>Link</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="show"></tbody>
+        </table>
+
+    </div>

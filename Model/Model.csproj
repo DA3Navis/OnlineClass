@@ -57,10 +57,12 @@
   <ItemGroup>
     <Compile Include="Dao\CategoryDao.cs" />
     <Compile Include="Dao\CourseDao.cs" />
+    <Compile Include="Dao\LessonDao.cs" />
     <Compile Include="Dao\UserDao.cs" />
     <Compile Include="EF\Course.cs" />
     <Compile Include="EF\CourseCategory.cs" />
     <Compile Include="EF\Enrollment.cs" />
+    <Compile Include="EF\Lesson.cs" />
     <Compile Include="EF\OnlineClassContext.cs" />
     <Compile Include="EF\Slide.cs" />
     <Compile Include="EF\User.cs" />
@@ -73,5 +75,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

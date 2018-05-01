@@ -19,10 +19,23 @@
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
+                @{ 
+                    var session = (UserLogin)Session[OnlineClass2.Common.CommonConstants.USER_SESSION];
+                }
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @if (session == null)
+                    {
+                        <li>@Html.ActionLink("Đăng ký", "Register", "User")</li>
+                        <li>@Html.ActionLink("Đăng nhập", "Login", "User")</li>
+                    }
+                    else
+                    {
+                        <li>Xin chào @session.UserName</li>
+                        <li>@Html.ActionLink("Đăng xuất", "Logout", "User")</li>
+                    }
                 </ul>
             </div>
         </div>

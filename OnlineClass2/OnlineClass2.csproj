@@ -162,20 +162,25 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\Controllers\CourseCategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CoursesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LessonsController.cs" />
     <Compile Include="Areas\Admin\Views\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
-    <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
-    <Compile Include="Areas\Admin\Controllers\CourseController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Common\CommonConstants.cs" />
     <Compile Include="Common\Encrytor.cs" />
+    <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Common\UserLogin.cs" />
   </ItemGroup>
@@ -184,6 +189,8 @@
     <Content Include="Assets\admin\dist\css\sb-admin-2.min.css" />
     <Content Include="Assets\admin\dist\js\sb-admin-2.js" />
     <Content Include="Assets\admin\dist\js\sb-admin-2.min.js" />
+    <Content Include="Assets\admin\js\controller\categoryController.js" />
+    <Content Include="Assets\admin\js\controller\courseController.js" />
     <Content Include="Assets\admin\js\controller\userController.js" />
     <Content Include="Assets\admin\js\plugins\ckeditor\adapters\jquery.js" />
     <Content Include="Assets\admin\js\plugins\ckeditor\build-config.js" />
@@ -661,6 +668,47 @@
     <Content Include="Assets\admin\js\plugins\ckfinder\core\connector\aspx\lang\vi.xml" />
     <Content Include="Assets\admin\js\plugins\ckfinder\core\connector\aspx\lang\zh-cn.xml" />
     <Content Include="Assets\admin\js\plugins\ckfinder\core\connector\aspx\lang\zh-tw.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\connector.aspx" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\bg.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\ca.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\cs.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\cy.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\da.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\de.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\el.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\en.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\eo.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\es-mx.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\es.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\et.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\fa.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\fi.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\fr.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\gu.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\he.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\hi.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\hr.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\hu.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\it.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\ja.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\lt.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\lv.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\nb.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\nl.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\nn.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\no.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\pl.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\pt-br.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\ro.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\ru.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\sk.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\sl.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\sr.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\sv.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\tr.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\vi.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\zh-cn.xml" />
+    <Content Include="Assets\admin\js\plugins\ckfinder\_samples\core\connector\aspx\lang\zh-tw.xml" />
     <Content Include="Assets\admin\js\plugins\ckfinder\help\cs\files\001.html" />
     <Content Include="Assets\admin\js\plugins\ckfinder\help\cs\files\002.html" />
     <Content Include="Assets\admin\js\plugins\ckfinder\help\cs\files\003.html" />
@@ -1351,6 +1399,10 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Image\images\Catogory\2f27ed3ed16e3076f1aa7f378997c023.png" />
+    <Content Include="Image\images\Catogory\hoc-lap-trinh-aspnet-mvc-truc-tuyen-13012016-1.png" />
+    <Content Include="Image\_thumbs\Images\Catogory\2f27ed3ed16e3076f1aa7f378997c023.png" />
+    <Content Include="Image\_thumbs\Images\Catogory\hoc-lap-trinh-aspnet-mvc-truc-tuyen-13012016-1.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -1412,8 +1464,6 @@
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
     <Content Include="Areas\Admin\Views\User\Create.cshtml" />
     <Content Include="Areas\Admin\Views\User\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Category\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Course\Create.cshtml" />
     <Content Include="Assets\admin\js\plugins\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
     <Content Include="Assets\admin\js\plugins\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Assets\admin\js\plugins\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.ttf" />
@@ -1421,7 +1471,16 @@
     <Content Include="Assets\admin\js\plugins\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Assets\admin\js\plugins\ckfinder\userfiles\.htaccess" />
     <Content Include="Areas\Admin\Views\Shared\_Navigation.cshtml" />
-    <Content Include="Areas\Admin\Views\Course\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CourseCategories\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CourseCategories\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CourseCategories\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Courses\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Courses\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Courses\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Lessons\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Lessons\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Lessons\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Lessons\Delete.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1449,12 +1508,15 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\ComfirmEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Assets\client\" />
-    <Folder Include="Models\" />
+    <Folder Include="Views\Email\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

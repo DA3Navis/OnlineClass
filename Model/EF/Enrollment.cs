@@ -16,5 +16,9 @@ namespace Model.EF
         public long UserID { get; set; }
 
         public double? Advance { get; set; }
+
+        public virtual Course Course { get; set; }
+
+        public virtual User User { get; set; }
     }
 }

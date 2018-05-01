@@ -24,7 +24,7 @@ namespace OnlineClass2.Areas.Admin.Controllers
 
         protected void SetAlert(string message, string type)
         {
-            TempData["AlertMessage"] = "message";
+            TempData["AlertMessage"] = message;
             if(type == "success")
             {
                 TempData["AlertType"] = "alert-success";

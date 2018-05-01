@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PagedList;
+using System.Data.Entity.Validation;
 
 namespace Model.Dao
 {
@@ -14,15 +15,32 @@ namespace Model.Dao
 
         public UserDao()
         {
-            db = new OnlineClassContext();      
+            db = new OnlineClassContext();
         }
 
         // Thêm vào cơ sở dũ liệu
         public long Insert(User entity)
         {
             db.Users.Add(entity);
-            db.SaveChanges();
-            return entity.ID;         
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
+            return entity.ID;
         }
 
         // Cập nhật dữ liệu
@@ -38,7 +56,7 @@ namespace Model.Dao
                 db.SaveChanges();
                 return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return false;
             }
@@ -54,7 +72,7 @@ namespace Model.Dao
                 db.SaveChanges();
                 return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return false;
             }
@@ -128,6 +146,42 @@ namespace Model.Dao
                     }
                 }
             }
+        }
+
+        public int LoginUser(string userName, string password)
+        {
+            var result = db.Users.SingleOrDefault(x => x.UserName == userName);
+            //var result = (from x in db.Users where (x.UserName == userName && x.Password == password) select x).Count();
+            if (result == null)
+            {
+                return 0;
+            }
+            else
+            {
+
+                if (result.Status == false)
+                {
+                    return -1;
+                }
+                else
+                {
+                    if (result.Password == password)
+                        return 1;
+                    else
+                        return -2;
+                }
+
+            }
+        }
+
+        public bool CheckUserName(string userName)
+        {
+            return db.Users.Count(x => x.UserName == userName) > 0;
+        }
+
+        public bool CheckEmail(string email)
+        {
+            return db.Users.Count(x => x.Email == email) > 0;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Model.EF
+namespace Model.EF
 {
     using System;
     using System.Collections.Generic;
@@ -9,23 +9,25 @@
     [Table("CourseCategory")]
     public partial class CourseCategory
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CourseCategory()
+        {
+            Courses = new HashSet<Course>();
+        }
+
         public long ID { get; set; }
 
         [StringLength(250)]
-        [Display(Name = "Tên")]
         public string Name { get; set; }
 
         [StringLength(250)]
         public string MetaTitle { get; set; }
 
-        public long? ParentID { get; set; }
-
-        public int? DisplayOrder { get; set; }
-
-        [Display(Name = "Ngày tạo")]
         public DateTime? CreatedDate { get; set; }
 
-        [Display(Name = "Trạng thái")]
-        public bool? Status { get; set; }
+        public bool Status { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Course> Courses { get; set; }
     }
 }
