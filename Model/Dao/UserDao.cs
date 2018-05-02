@@ -183,5 +183,13 @@ namespace Model.Dao
         {
             return db.Users.Count(x => x.Email == email) > 0;
         }
+
+        public string GetEmail(string userName)
+        {
+            string email = (from cust in db.Users
+                         where cust.UserName == userName
+                         select cust.Email).First();
+            return email;
+        }
     }
 }
