@@ -73,5 +73,10 @@ namespace Model.Dao
                 return false;
             }
         }
+
+        public List<Lesson> ListLess(long id)
+        {
+            return db.Lessons.Where(x => x.CourseID == id).ToList();
+        }
     }
 }

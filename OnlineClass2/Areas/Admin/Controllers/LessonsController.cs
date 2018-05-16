@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Model.Dao;
 using Model.EF;
+using OnlineClass2.Common;
 
 namespace OnlineClass2.Areas.Admin.Controllers
 {
@@ -50,6 +51,9 @@ namespace OnlineClass2.Areas.Admin.Controllers
             {
                 var dao = new LessonDao();
 
+                var meta = Meta.ToMeta(less.Title);
+                less.MetaTitle = meta;
+
                 long id = dao.Insert(less);
                 if (id > 0)
                 {
@@ -62,7 +66,7 @@ namespace OnlineClass2.Areas.Admin.Controllers
                 }
 
             }
-            return View("Index");
+            return View();
         }
 
 
@@ -103,7 +107,7 @@ namespace OnlineClass2.Areas.Admin.Controllers
         public ActionResult Edit(long id)
         {
             var dao = new LessonDao();
-            var less = dao.GetByID(id);            
+            var less = dao.GetByID(id);
             return View(less);
         }
 
@@ -114,6 +118,9 @@ namespace OnlineClass2.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var dao = new LessonDao();
+
+                var meta = Meta.ToMeta(model.Title);
+                model.MetaTitle = meta;
 
                 var result = dao.Update(model);
                 if (result)

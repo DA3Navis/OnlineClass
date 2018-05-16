@@ -95,5 +95,20 @@ namespace Model.Dao
         {
             return db.Courses.Where(x => x.Status == true).ToList();
         }
+
+        public List<Course> ListNew(int top)
+        {
+            return db.Courses.Where(x => x.Status == true).OrderByDescending(x => x.CreatedDate).Take(top).ToList();
+        }
+
+        public List<Course> ListPro(int top)
+        {
+            return db.Courses.Where(x => x.Status == true).OrderByDescending(x => x.PromotonPrice).Take(top).ToList();
+        }
+
+        public List<Course> ListCour(long id)
+        {
+            return db.Courses.Where(x => x.CategoryID == id && x.Status == true).ToList();
+        }
     }
 }

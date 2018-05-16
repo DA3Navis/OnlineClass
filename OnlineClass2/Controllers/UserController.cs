@@ -205,6 +205,7 @@ namespace OnlineClass2.Controllers
                             mail.To.Add(model.Email);
                             smtp.Send(mail);
                         }
+                        ViewBag.Success = "Gửi thành công";
                     }
                     else
                         ModelState.AddModelError("", "Email không đúng với tài khoản");
@@ -240,8 +241,7 @@ namespace OnlineClass2.Controllers
                         {
                             user.Password = Encrytor.MD5Hash(model.Password);
                             db.SaveChanges();
-                            ModelState.AddModelError("", "Đổi mật khẩu thành công");
-                            return RedirectToAction("Login", "User");
+                            ViewBag.Success = "Đổi mật khẩu thành công";                          
                         }
                     }
                     else

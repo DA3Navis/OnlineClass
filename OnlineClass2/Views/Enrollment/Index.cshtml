@@ -1,0 +1,38 @@
+﻿@model List<OnlineClass2.Models.Enrollment>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.Count > 0)
+{
+    <table>
+        <thead>
+            <tr>
+                <td>Mã khóa học</td>
+                <td>Tên khóa học</td>
+                <td>Hình ảnh</td>
+                <td>Giá</td>
+                <td>Số bài</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Course.ID</td>
+                    <td>@item.Course.Name</td>
+                    <td><img src="@item.Course.Image" width="100px" /></td>
+                    <td>@item.Course.Price</td>
+                    <td>@item.Course.CountLesson</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+}
+else
+{
+    <span>Chưa tham gia khóa học nào</span>
+}
+

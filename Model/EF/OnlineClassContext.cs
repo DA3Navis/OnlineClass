@@ -18,6 +18,8 @@ namespace Model.EF
         public virtual DbSet<Lesson> Lessons { get; set; }
         public virtual DbSet<Slide> Slides { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Menu> Menus { get; set; }
+        public virtual DbSet<MenuType> MenuTypes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -84,10 +86,6 @@ namespace Model.EF
             modelBuilder.Entity<Slide>()
                 .Property(e => e.Link)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<User>()
-                .Property(e => e.Email)
-                .IsFixedLength();
 
             modelBuilder.Entity<User>()
                 .Property(e => e.Phone)
