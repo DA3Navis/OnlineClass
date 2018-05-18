@@ -29,11 +29,29 @@ namespace OnlineClass2.Controllers
             return View(course);
         }
 
-        public ActionResult Lesson(long lessid, long couid)
+        public ActionResult Demo(long lessid, long couid)
         {
+            ViewBag.Cou = new CourseDao().GetByID(couid);
             ViewBag.Lesson = new LessonDao().ListLess(couid);
             var dao = new LessonDao();
             var lesson = dao.GetByID(lessid);
+            return View(lesson);
+        }
+        
+        public ActionResult Learn(long courseID, long userID)
+        {
+            ViewBag.Lesson = new LessonDao().ListLess(courseID);
+            var dao = new CourseDao();
+            var course = dao.GetByID(courseID);
+            return View(course);
+        }
+
+        public ActionResult Lesson(long courseID, long userID, long lessonID)
+        {
+            ViewBag.Cou = new CourseDao().GetByID(courseID);
+            ViewBag.Lesson = new LessonDao().ListLess(courseID);
+            var dao = new LessonDao();
+            var lesson = dao.GetByID(lessonID);
             return View(lesson);
         }
     }

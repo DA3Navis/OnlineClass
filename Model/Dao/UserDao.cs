@@ -188,7 +188,7 @@ namespace Model.Dao
         {
             string email = (from cust in db.Users
                          where cust.UserName == userName
-                         select cust.Email).First();
+                         select cust.Email).FirstOrDefault();
             return email;
         }
     }

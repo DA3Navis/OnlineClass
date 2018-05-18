@@ -25,5 +25,15 @@ namespace OnlineClass2.Controllers
             ViewBag.Cate = new CategoryDao().ListAll();
             return PartialView();
         }
+
+        public ActionResult Contact()
+        {
+            return View();
+        }
+
+        public ActionResult Intro()
+        {
+            return View();
+        }
     }
 }

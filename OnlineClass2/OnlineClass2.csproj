@@ -172,6 +172,7 @@
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
+    <Compile Include="Common\Code.cs" />
     <Compile Include="Common\CommonConstants.cs" />
     <Compile Include="Common\Encrytor.cs" />
     <Compile Include="Common\Meta.cs" />
@@ -1542,8 +1543,14 @@
     <Content Include="Views\Shared\MainMenu.cshtml" />
     <Content Include="Views\Course\Cate.cshtml" />
     <Content Include="Views\Course\Detail.cshtml" />
-    <Content Include="Views\Course\Lesson.cshtml" />
     <Content Include="Views\Enrollment\Index.cshtml" />
+    <Content Include="Views\Enrollment\CheckCode.cshtml" />
+    <Content Include="Views\User\EnrollCourse.cshtml" />
+    <Content Include="Views\Course\Demo.cshtml" />
+    <Content Include="Views\Course\Learn.cshtml" />
+    <Content Include="Views\Course\Lesson.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Intro.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,8 +1,10 @@
 ﻿@model Model.EF.Lesson
 @{
-    ViewBag.Title = "Lesson";
+    ViewBag.Title = "Bài giảng";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var lessons = (List<Model.EF.Lesson>)ViewBag.Lesson;
+    var course = (Model.EF.Course)ViewBag.Cou;
+    var session = (UserLogin)Session[OnlineClass2.Common.CommonConstants.USER_SESSION];
 }
 
 @section style{
@@ -85,24 +87,33 @@
         <!--  <iframe width="100%" height="auto" src="https://www.youtube.com/embed/7ZMlp3-ab9U" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="0" ></iframe> -->
         <div class="video-wrapper">
             <!-- <iframe src="https://youtu.be/32sYGCOYJUM" height="100%" width="700" allowfullscreen="" frameborder="0">
-        </iframe> -->
+            </iframe> -->
             @Html.Raw(HttpUtility.HtmlDecode(Model.LinkURL));
-        </div>
-        <div style="margin-top: 20px;">
-            <button class="btn btn-info" style="float: right;"><i class="fa fa-toggle-right"></i> Học tiếp</button>
-            <button class="btn btn-info" style="float: left;"><i class="fa fa-toggle-left"></i> Quay lại</button>
         </div>
     </div>
 
     <div class="col-md-4" style="padding: 30px;">
         <table class="tableSection">
+            @{ var i = 1;}
             @foreach (var item in lessons)
             {
-                <tr>
-                    <td>
-                        <a href="#" style="font-size: 120%;"><i class="fa fa-video-camera"></i> @item.Title</a>
-                    </td>
-                </tr>
+                if (i == 1)
+                {
+                    <tr>
+                        <td>
+                            <a href="/bai-giang/@course.MetaTitle-@course.ID-@session.UserID/@Model.MetaTitle-@Model.ID" style="font-size: 120%;"><i class="fa fa-play-circle-o"></i> @item.Title</a>
+                        </td>
+                    </tr>
+                    i++;
+                }
+                else
+                {
+                    <tr>
+                        <td>
+                            <a href="#" style="font-size: 120%;" class="not-active"><i class="fa fa-pause-circle-o"></i> @item.Title</a>
+                        </td>
+                    </tr>
+                }
             }
         </table>
         <table>

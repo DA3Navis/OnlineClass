@@ -28,9 +28,23 @@ namespace OnlineClass2
             );
 
             routes.MapRoute(
-                name: "Join Course",
-                url: "tham-gia",
-                defaults: new { controller = "Enrollment", action = "JoinCourse", id = UrlParameter.Optional },
+                name: "Contact",
+                url: "lien-he",
+                defaults: new { controller = "Home", action = "Contact", id = UrlParameter.Optional },
+                namespaces: new[] { "OnlineClass2.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: "Intro",
+                url: "gioi-thieu",
+                defaults: new { controller = "Home", action = "Intro", id = UrlParameter.Optional },
+                namespaces: new[] { "OnlineClass2.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: "Course Enrollment",
+                url: "danh-sach-khoa-hoc-tham-gia",
+                defaults: new { controller = "User", action = "EnrollCourse", id = UrlParameter.Optional },
                 namespaces: new[] { "OnlineClass2.Controllers" }
             );
 
@@ -49,11 +63,32 @@ namespace OnlineClass2
             );
 
             routes.MapRoute(
-                name: "Course Lesson",
-                url: "bai-giang/{CourseMetatitle}-{couid}/{LessonMetatitle}-{lessid}",
+                name: "Course Learn",
+                url: "hoc/{metatitle}-{courseID}-{userID}",
+                defaults: new { controller = "Course", action = "Learn", id = UrlParameter.Optional },
+                namespaces: new[] { "OnlineClass2.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: "Course Demo",
+                url: "hoc-thu/{CourseMetatitle}-{couid}/{LessonMetatitle}-{lessid}",
+                defaults: new { controller = "Course", action = "Demo", id = UrlParameter.Optional },
+                namespaces: new[] { "OnlineClass2.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: "Course lesson",
+                url: "bai-giang/{CourseMetatitle}-{courseID}-{userID}/{LessonMetatitle}-{lessonID}",
                 defaults: new { controller = "Course", action = "Lesson", id = UrlParameter.Optional },
                 namespaces: new[] { "OnlineClass2.Controllers" }
-            );          
+            );
+
+            routes.MapRoute(
+                name: "Check Code",
+                url: "tham-gia/{courseID}-{userID}",
+                defaults: new { controller = "Enrollment", action = "CheckCode", id = UrlParameter.Optional },
+                namespaces: new[] { "OnlineClass2.Controllers" }
+            );
 
             routes.MapRoute(
                 name: "Default",

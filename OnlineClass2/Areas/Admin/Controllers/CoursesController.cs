@@ -49,6 +49,10 @@ namespace OnlineClass2.Areas.Admin.Controllers
                 var dao = new CourseDao();
 
                 var meta = Meta.ToMeta(course.Name);
+
+                var code = Code.MakeCode();
+
+                course.Code = code;
                 course.MetaTitle = meta;
 
                 long id = dao.Insert(course);

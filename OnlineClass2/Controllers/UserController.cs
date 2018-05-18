@@ -130,6 +130,7 @@ namespace OnlineClass2.Controllers
                     // Lưu giá trị
                     userSession.UserName = user.UserName;
                     userSession.UserID = user.ID;
+                    userSession.ListEnroll = new EnrollmentDao().ListEnroll(user.ID);
                     Session.Add(name: CommonConstants.USER_SESSION, value: userSession);
                     // Về trang chủ
                     return RedirectToAction("Index", "Home");
@@ -249,6 +250,12 @@ namespace OnlineClass2.Controllers
                 }
             }
             return View(model);
+        }
+
+        public ActionResult EnrollCourse()
+        {
+
+            return View();
         }
     }
 }
