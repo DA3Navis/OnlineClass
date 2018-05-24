@@ -13,6 +13,7 @@ namespace Model.EF
         public User()
         {
             Enrollments = new HashSet<Enrollment>();
+            Finishes = new HashSet<Finish>();
         }
 
         public long ID { get; set; }
@@ -40,5 +41,8 @@ namespace Model.EF
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Enrollment> Enrollments { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Finish> Finishes { get; set; }
     }
 }

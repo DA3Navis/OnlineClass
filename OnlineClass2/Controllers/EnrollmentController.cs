@@ -116,7 +116,7 @@ namespace OnlineClass2.Controllers
                 enroll.CourseID = courseID;
                 enroll.Advance = 0;
 
-                var result = dao.Insert(enroll);
+                dao.Insert(enroll);
                 var course = new CourseDao().GetByID(courseID);
                 var enrollCourse = new CourseUserEnroll();
                 enrollCourse.ID = course.ID;

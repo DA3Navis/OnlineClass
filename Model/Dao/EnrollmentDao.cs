@@ -17,11 +17,22 @@ namespace Model.Dao
             db = new OnlineClassContext();
         }
 
-        public long Insert(Enrollment entity)
+        public void Insert(Enrollment entity)
         {
             db.Enrollments.Add(entity);
             db.SaveChanges();
-            return entity.ID;
+        }
+
+        public void Update(Enrollment entity)
+        {
+            var enroll = db.Enrollments.Find(entity.ID);
+            enroll.Advance = entity.Advance + 1;
+            db.SaveChanges();
+        }
+
+        public Enrollment GetByID(long courseID, long userID)
+        {
+            return db.Enrollments.First(x => x.UserID == userID && x.CourseID == courseID);
         }
 
         public bool Check(long courseID, long userID)

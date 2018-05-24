@@ -49,6 +49,13 @@ namespace OnlineClass2
             );
 
             routes.MapRoute(
+               name: "Profile",
+               url: "thong-tin/{userID}",
+               defaults: new { controller = "User", action = "Profile", id = UrlParameter.Optional },
+               namespaces: new[] { "OnlineClass2.Controllers" }
+           );
+
+            routes.MapRoute(
                 name: "Category",
                 url: "{metatitle}-{cateid}",
                 defaults: new { controller = "Course", action = "Cate", id = UrlParameter.Optional },

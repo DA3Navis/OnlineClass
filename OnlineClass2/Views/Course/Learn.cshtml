@@ -46,14 +46,12 @@
             visibility: hidden;
             opacity: 0;
         }
-
-                    
     </style>
 }
 
 @section jsFooter{
     <script>
-        
+
     </script>
 }
 
@@ -68,12 +66,12 @@
             @Html.Raw(Model.Description)
         </div>
         @foreach (var item in session.ListEnroll)
-    {
-        if (Model.ID == item.ID)
         {
-            <h4>Tiến độ: <span style="font-size:200%; color:sandybrown">@item.Advance/@item.CountLesson</span></h4>
-    }
-}
+            if (Model.ID == item.ID)
+            {
+                <h4>Tiến độ: <span style="font-size:200%; color:sandybrown">@item.Advance/@item.CountLesson</span></h4>
+            }
+        }
     </div>
 </div>
 
@@ -91,30 +89,26 @@
 
         @foreach (var less in lessons)
         {
-            if (i == 1)
-            {
-                <tr>
-                    <td class="row">
-                        <div class="col-md-8">
-                            <h5><i class="fa fa-video-camera"></i><a href="/bai-giang/@Model.MetaTitle-@Model.ID-@session.UserID/@less.MetaTitle-@less.ID"> @Html.Raw(less.Title)</a></h5>
-                        </div>
-                        <div class="col-md-4">
-                            <button class="btn btn-info" style="float:right"><a href="/bai-giang/@Model.MetaTitle-@Model.ID-@session.UserID/@less.MetaTitle-@less.ID" style="color: white">Học</a></button>
-                        </div>
-                    </td>
-                </tr>
-                i++;
-            }
-            else
-            {
-                <tr>
-                    <td class="row">
-                        <div class="col-md-8">
-                            <h5><i class="fa fa-video-camera"></i><a class="not-active" href="/bai-giang/@Model.MetaTitle-@Model.ID-@session.UserID/@less.MetaTitle-@less.ID"> @Html.Raw(less.Title)</a></h5>
-                        </div>
-                    </td>
-                </tr>
-            }
+            <tr>
+                <td class="row">
+                    <div class="col-md-8">
+                        <h5><i class="fa fa-video-camera"></i><a href="/bai-giang/@Model.MetaTitle-@Model.ID-@session.UserID/@less.MetaTitle-@less.ID"> @Html.Raw(less.Title)</a></h5>
+                    </div>
+                    <div class="col-md-2">
+                        @foreach(var item in session.ListDone)
+                        {
+                            if(less.ID == item.LessonID)
+                            {
+                                <h5 style="color:forestgreen"><b>Hoàn thành</b></h5>
+                                break;
+                            }
+                        }
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-info" style="float:right"><a href="/bai-giang/@Model.MetaTitle-@Model.ID-@session.UserID/@less.MetaTitle-@less.ID" style="color: white">Học</a></button>
+                    </div>
+                </td>
+            </tr>
         }
 
     </table>

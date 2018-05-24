@@ -62,9 +62,8 @@ namespace Model.Dao
             {
                 var less = db.Lessons.Find(entity.ID);
                 less.Title = entity.Title;
-                less.Description = entity.Description;
-                less.Image = entity.Image;
                 less.LinkURL = entity.LinkURL;
+                less.YoutubeID = entity.YoutubeID;
                 db.SaveChanges();
                 return true;
             }

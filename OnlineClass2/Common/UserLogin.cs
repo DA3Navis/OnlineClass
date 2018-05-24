@@ -13,5 +13,6 @@ namespace OnlineClass2
         public long UserID { set; get; }
         public string UserName { get; set; }
         public List<CourseUserEnroll> ListEnroll { get; set; }
+        public List<Finish> ListDone { get; set; }
     }
 }

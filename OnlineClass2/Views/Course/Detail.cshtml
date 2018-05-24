@@ -189,14 +189,13 @@
                     </h4>
                 }
             }
-
+            @{var c = false; }
             @if (session == null)
             {
                 <button class="btn btn-success" type="button"><a href="/dang-nhap" style="color:white">Tham gia</a></button>
             }
             else
             {
-                var c = false;
                 foreach (var item in session.ListEnroll)
                 {
                     if (Model.ID == item.ID)
@@ -207,7 +206,7 @@
                         break;
                     }
                 }
-                if(!c)
+                if (!c)
                 {
                     if (Model.Price > 0)
                     {
@@ -227,44 +226,50 @@
 
 
 <div class="col-md-12" style="margin-top: 20px;">
-    <table>
-        <tr>
-            <td><h2 style="text-align: center;">Danh sách bài giảng</h2></td>
-        </tr>
 
-        @{
-            var i = 1;
-        }
+    @if (c)
+    {
+    }
+    else
+    {
+        <table>
+            <tr>
+                <td><h2 style="text-align: center;">Danh sách bài giảng</h2></td>
+            </tr>
 
-        @foreach (var less in lessons)
-        {
-            if (i == 1)
-            {
-                <tr>
-                    <td class="row">
-                        <div class="col-md-8">
-                            <h5><i class="fa fa-video-camera"></i><a href="/hoc-thu/@Model.MetaTitle-@Model.ID/@less.MetaTitle-@less.ID"> @Html.Raw(less.Title)</a></h5>
-                        </div>
-                        <div class="col-md-4">
-                            <button class="btn btn-info" style="float:right"><a href="/hoc-thu/@Model.MetaTitle-@Model.ID/@less.MetaTitle-@less.ID" style="color: white">Học thử</a></button>
-                        </div>
-                    </td>
-                </tr>
-                i++;
+            @{
+                var i = 1;
             }
-            else
-            {
-                <tr>
-                    <td class="row">
-                        <div class="col-md-8">
-                            <h5><i class="fa fa-video-camera"></i><a class="not-active" href="/bai-giang/@Model.MetaTitle-@Model.ID/@less.MetaTitle-@less.ID"> @Html.Raw(less.Title)</a></h5>
-                        </div>
-                    </td>
-                </tr>
-            }
-        }
 
-    </table>
+            @foreach (var less in lessons)
+            {
+                if (i == 1)
+                {
+                    <tr>
+                        <td class="row">
+                            <div class="col-md-8">
+                                <h5><i class="fa fa-video-camera"></i><a href="/hoc-thu/@Model.MetaTitle-@Model.ID/@less.MetaTitle-@less.ID"> @Html.Raw(less.Title)</a></h5>
+                            </div>
+                            <div class="col-md-4">
+                                <button class="btn btn-info" style="float:right"><a href="/hoc-thu/@Model.MetaTitle-@Model.ID/@less.MetaTitle-@less.ID" style="color: white">Học thử</a></button>
+                            </div>
+                        </td>
+                    </tr>
+                    i++;
+                }
+                else
+                {
+                    <tr>
+                        <td class="row">
+                            <div class="col-md-8">
+                                <h5><i class="fa fa-video-camera"></i><a class="not-active" href="/bai-giang/@Model.MetaTitle-@Model.ID/@less.MetaTitle-@less.ID"> @Html.Raw(less.Title)</a></h5>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    }
 </div>
 
 

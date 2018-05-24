@@ -73,44 +73,135 @@
             text-decoration: none;
         }
 
-        .not-active {
-            pointer-events: none;
-            cursor: default;
-            text-decoration: none;
-            color: black;
+        a {
+            color: lightslategray;
+        }
+
+        .red {
+            color: red;
+        }
+
+        .green {
+            color: dodgerblue;
         }
     </style>
 }
 
+@section jsFooter{
+    <script>
+        var tag = document.createElement('script');
+
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '100%',
+                width: '100%',
+                videoId: $('#YoutubeID').val() ,
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            event.target.playVideo();
+        }
+
+        var myVar = setInterval(function () { myTimer() }, 1000);
+        var a = 0;
+
+        function myTimer() {
+            var a = player.getCurrentTime();
+            var b = player.getDuration();
+            if (a / b > 0.8) {
+                $('.fa-play-circle-o').removeClass('green');
+                $('.fa-play-circle-o').addClass('red');
+
+                var data = { courseID: $('#courseID').val(), userID: $('#userID').val(), lessonID: $('#lessonID').val()};
+
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Done", "Course")',
+                    data: JSON.stringify(data),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "text",
+                    success: function (res) {
+                        console.log(res);
+                    }
+                });
+
+                clearInterval(myVar);
+            }
+        }
+
+        var done = false;
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.PLAYING && !done) {
+            }
+        }
+
+    </script>
+}
 <div class="row">
-    <div class="col-md-8" style="padding: 30px ">
+    <div class="col-md-8" style="padding: 30px; height: 450px ">
         <!--  <iframe width="100%" height="auto" src="https://www.youtube.com/embed/7ZMlp3-ab9U" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="0" ></iframe> -->
-        <div class="video-wrapper">
-            <!-- <iframe src="https://youtu.be/32sYGCOYJUM" height="100%" width="700" allowfullscreen="" frameborder="0">
-            </iframe> -->
-            @Html.Raw(HttpUtility.HtmlDecode(Model.LinkURL));
+        <div id="player" class="col-md-12">
+            @*@Html.Raw(HttpUtility.HtmlDecode(Model.LinkURL));*@
         </div>
+        <input type="text" value="@Model.YoutubeID" hidden id="YoutubeID" />
+        <input type="text" value="@Model.ID" id="lessonID" hidden />
+        <input type="text" value="@course.ID" id="courseID" hidden />
+        <input type="text" value="@session.UserID" id="userID" hidden />
     </div>
 
     <div class="col-md-4" style="padding: 30px;">
         <table class="tableSection">
-            @{ var i = 1;}
             @foreach (var item in lessons)
             {
-                if (i == 1)
+                if (item.ID == Model.ID)
                 {
                     <tr>
                         <td>
-                            <a href="/bai-giang/@course.MetaTitle-@course.ID-@session.UserID/@Model.MetaTitle-@Model.ID" style="font-size: 120%;"><i class="fa fa-play-circle-o"></i> @item.Title</a>
+                            @{ var b = 0;}
+                            @foreach (var a in session.ListDone)
+                            {
+                                if (item.ID == a.LessonID)
+                                {
+                                    <a href="/bai-giang/@course.MetaTitle-@course.ID-@session.UserID/@Model.MetaTitle-@Model.ID" style="font-size: 120%;"><i class="fa fa-play-circle-o red"></i> @item.Title</a>
+                                    b++;
+                                    break;
+                                }
+                            }
+                            @if (b == 0)
+                            {
+                                <a href="/bai-giang/@course.MetaTitle-@course.ID-@session.UserID/@Model.MetaTitle-@Model.ID" style="font-size: 120%;"><i class="fa fa-play-circle-o green"></i> @item.Title</a>
+                            }
                         </td>
                     </tr>
-                    i++;
                 }
                 else
                 {
                     <tr>
                         <td>
-                            <a href="#" style="font-size: 120%;" class="not-active"><i class="fa fa-pause-circle-o"></i> @item.Title</a>
+                            @{ var c = 0;}
+                            @foreach (var a in session.ListDone)
+                            {
+                                if (item.ID == a.LessonID)
+                                {
+                                    <a href="/bai-giang/@course.MetaTitle-@course.ID-@session.UserID/@item.MetaTitle-@item.ID" style="font-size: 120%;"><i class="fa fa-pause-circle-o red"></i> @item.Title</a>
+                                    c++;
+                                    break;
+                                }
+                            }
+                            @if (c == 0)
+                            {
+                                <a href="/bai-giang/@course.MetaTitle-@course.ID-@session.UserID/@item.MetaTitle-@item.ID" style="font-size: 120%;"><i class="fa fa-pause-circle-o"></i> @item.Title</a>
+                            }
                         </td>
                     </tr>
                 }
