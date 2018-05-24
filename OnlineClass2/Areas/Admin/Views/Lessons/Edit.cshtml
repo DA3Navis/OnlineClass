@@ -39,35 +39,24 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.TextBoxFor(model => model.Title, new {  @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            @*Mô tả*@
-            <div class="form-group">
-                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-lg-10">
-                    @Html.TextAreaFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" }, @id = "txtDes" })
-                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            @*Ảnh*@
-            <div class="form-group">
-                @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" }, @id = "txtImage" })
-                    <a id="btnSelectImage" href="#">Chọn ảnh</a>
-                    @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.LinkURL, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.LinkURL, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.TextBoxFor(model => model.LinkURL, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.LinkURL, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.YoutubeID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.YoutubeID, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.YoutubeID, "", new { @class = "text-danger" })
                 </div>
             </div>
 

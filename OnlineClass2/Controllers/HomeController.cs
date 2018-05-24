@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Model.Dao;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 
 namespace OnlineClass2.Controllers
 {
@@ -10,20 +12,27 @@ namespace OnlineClass2.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.Slide = new SlideDao().ListAll();
+            ViewBag.NewCourse = new CourseDao().ListNew(8);
+            ViewBag.ProCourse = new CourseDao().ListPro(8);
             return View();
         }
-
-        public ActionResult About()
+        
+        [ChildActionOnly]
+        public ActionResult MainMenu()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            //var model = new MenuDao().ListByGroupId(1);
+            ViewBag.Cate = new CategoryDao().ListAll();
+            return PartialView();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            return View();
+        }
 
+        public ActionResult Intro()
+        {
             return View();
         }
     }

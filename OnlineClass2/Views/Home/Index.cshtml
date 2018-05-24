@@ -1,10 +1,348 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿
+@{
+    ViewBag.Title = "Trang chủ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var slides = (List<Model.EF.Slide>)ViewBag.Slide;
+    var newcourse = (List<Model.EF.Course>)ViewBag.NewCourse;
+    var procourse = (List<Model.EF.Course>)ViewBag.ProCourse;
+
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+@section style {
+    <style>
+        .AddCart a{
+            color:white;
+        }
+        a:hover{
+            text-decoration:none;
+        }
+    </style>
+    }
+
+@section slide {
+    <section class="slider">
+        <div id="slider-home" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                @{ var i = 0;}
+                @foreach (var item in slides)
+                {
+                    if (i == 0)
+                    {
+                        <li data-target="#slider-home" data-slide-to="@i" class="active"></li>
+                        i++;
+                    }
+                    else
+                    {
+                        <li data-target="#slider-home" data-slide-to="@i"></li>
+                        i++;
+                    }
+                }
+
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+                @{ var j = 1;}
+                @foreach (var item in slides)
+                {
+                    if (j == 1)
+                    {
+                        <div class="item active">
+                            <a href="@item.Link">
+                                <img src="@item.Image" alt="slider2" style="width:100%" />
+                            </a>
+                            <div class="carousel-caption">
+                                <a href="@item.Link">
+                                    <h1>@item.Name</h1>
+                                </a>
+                            </div>
+                        </div>
+                        j++;
+                    }
+                    else
+                    {
+                        <div class="item">
+                            <a href="@item.Link">
+                                <img src="@item.Image" alt="slider2" style="width:100%" />
+                            </a>
+                            <div class="carousel-caption">
+                                <a href="@item.Link">
+                                    <h1>@item.Name</h1>
+                                </a>
+                            </div>
+                        </div>
+                        j++;
+                    }
+                }
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#slider-home" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#slider-home" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        </div>
+    </section>
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <h2 style="text-align:center;">Khóa học mới</h2>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-6 hidden-xs">
+            <div class="controls pull-right">
+                <a class="left glyphicon glyphicon-chevron-left btn btn-info " href="#carousel-example" data-slide="prev"></a>
+                <a class="right glyphicon glyphicon-chevron-right btn btn-info" href="#carousel-example" data-slide="next"></a>
+            </div>
+        </div>
+    </div>
+    @{ var x = 1;}
+    <div id="carousel-example" class="carousel slide hidden-xs" data-ride="carousel" data-type="multi">
+        <div class="carousel-inner">
+            <div class="item active">
+                <div class="row">
+                    @foreach (var item in newcourse)
+                    {
+                        if (x < 5 && x > 0)
+                        {
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <div class="slider-item">
+                                    <div class="slider-image">
+                                        <a href="/khoa-hoc/@item.MetaTitle-@item.ID">
+                                            <img src="@item.Image" class="img-responsive" alt="a" />
+                                        </a>
+                                    </div>
+                                    <div class="slider-main-detail">
+                                        <div class="slider-detail">
+                                            <div class="product-detail">
+                                                <h4 style="text-align: center; color: #4CAF50;">
+                                                    @item.Name
+                                                </h4>
+                                                <h5><i class="glyphicon glyphicon-book"></i> @item.CountLesson bài giảng</h5>
+                                                @if (item.Price == 0)
+                                                {
+                                                    <h5 style="font-size:200%; color:tomato">Miễn phí</h5>
+                                                }
+                                                else
+                                                {
+                                                    if (item.PromotonPrice < item.Price)
+                                                    {
+                                                        <h5 class="pro-price">@item.PromotonPrice <sup class="x-price">@item.Price</sup></h5>
+                                                    }
+                                                    else
+                                                    {
+                                                        <h5 class="detail-price">@item.Price</h5>
+                                                    }
+                                                }
+
+                                            </div>
+                                        </div>
+                                        <div class="cart-section">
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-12 col-xs-6">
+                                                    <button class="AddCart btn btn-info"><a href="/khoa-hoc/@item.MetaTitle-@item.ID"> Xem chi tiết</a></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            x++;
+                        }
+                    }
+
+                </div>
+            </div>
+            <div class="item">
+                <div class="row">
+                    @{ newcourse.Reverse();}
+                    @foreach (var item in newcourse)
+                    {
+                        if (x < 9 && x > 4)
+                        {
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <div class="slider-item">
+                                    <div class="slider-image">
+                                        <a href="#">
+                                            <img src="@item.Image" class="img-responsive" alt="a" />
+                                        </a>
+                                    </div>
+                                    <div class="slider-main-detail">
+                                        <div class="slider-detail">
+                                            <div class="product-detail">
+                                                <h4 style="text-align: center; color: #4CAF50;">
+                                                    @item.Name
+                                                </h4>
+                                                <h5><i class="glyphicon glyphicon-book"></i> @item.CountLesson bài giảng</h5>
+                                                @if (item.Price == 0)
+                                                {
+                                                    <h5 style="font-size:200%; color:tomato">Miễn phí</h5>
+                                                }
+                                                else
+                                                {
+                                                    if (item.PromotonPrice < item.Price)
+                                                    {
+                                                        <h5 class="pro-price">@item.PromotonPrice <sup class="x-price">@item.Price</sup></h5>
+                                                    }
+                                                    else
+                                                    {
+                                                        <h5 class="detail-price">@item.Price</h5>
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                        <div class="cart-section">
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-12 col-xs-6">
+                                                    <button class="AddCart btn btn-info"><a href="/khoa-hoc/@item.MetaTitle-@item.ID">Xem chi tiết</a></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            x++;
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <h2 style="text-align:center;">Khóa học khuyến mãi</h2>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-6 hidden-xs">
+            <div class="controls pull-right">
+                <a class="left glyphicon glyphicon-chevron-left btn btn-info " href="#carousel-example" data-slide="prev"></a>
+                <a class="right glyphicon glyphicon-chevron-right btn btn-info" href="#carousel-example" data-slide="next"></a>
+            </div>
+        </div>
+    </div>
+    @{ var y = 1;}
+    <div id="carousel-example" class="carousel slide hidden-xs" data-ride="carousel" data-type="multi">
+        <div class="carousel-inner">
+            <div class="item active">
+                <div class="row">
+                    @foreach (var item in procourse)
+                    {
+                        if (y < 5 && y > 0)
+                        {
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <div class="slider-item">
+                                    <div class="slider-image">
+                                        <a href="/khoa-hoc/@item.MetaTitle-@item.ID">
+                                            <img src="@item.Image" class="img-responsive" alt="a" />
+                                        </a>
+                                    </div>
+                                    <div class="slider-main-detail">
+                                        <div class="slider-detail">
+                                            <div class="product-detail">
+                                                <h4 style="text-align: center; color: #4CAF50;">
+                                                    @item.Name
+                                                </h4>
+                                                <h5><i class="glyphicon glyphicon-book"></i> @item.CountLesson bài giảng</h5>
+                                                @if (item.Price == 0)
+                                                {
+                                                    <h5 style="font-size:200%; color:tomato">Miễn phí</h5>
+                                                }
+                                                else
+                                                {
+                                                    if (item.PromotonPrice < item.Price)
+                                                    {
+                                                        <h5 class="pro-price">@item.PromotonPrice <sup class="x-price">@item.Price</sup></h5>
+                                                    }
+                                                    else
+                                                    {
+                                                        <h5 class="detail-price">@item.Price</h5>
+                                                    }
+                                                }
+
+                                            </div>
+                                        </div>
+                                        <div class="cart-section">
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-12 col-xs-6">
+                                                    <button class="AddCart btn btn-info"><a href="/khoa-hoc/@item.MetaTitle-@item.ID"> Xem chi tiết</a></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            y++;
+                        }
+                    }
+
+                </div>
+            </div>
+            <div class="item">
+                <div class="row">
+                    @{ procourse.Reverse();}
+                    @foreach (var item in procourse)
+                    {
+                        if (y < 9 && y > 4)
+                        {
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <div class="slider-item">
+                                    <div class="slider-image">
+                                        <a href="/khoa-hoc/@item.MetaTitle-@item.ID">
+                                            <img src="@item.Image" class="img-responsive" alt="a" />
+                                        </a>
+                                    </div>
+                                    <div class="slider-main-detail">
+                                        <div class="slider-detail">
+                                            <div class="product-detail">
+                                                <h4 style="text-align: center; color: #4CAF50;">
+                                                    @item.Name
+                                                </h4>
+                                                <h5><i class="glyphicon glyphicon-book"></i> @item.CountLesson bài giảng</h5>
+                                                @if (item.Price == 0)
+                                                {
+                                                    <h5 style="font-size:200%; color:tomato">Miễn phí</h5>
+                                                }
+                                                else
+                                                {
+                                                    if (item.PromotonPrice < item.Price)
+                                                    {
+                                                        <h5 class="pro-price">@item.PromotonPrice <sup class="x-price">@item.Price</sup></h5>
+                                                    }
+                                                    else
+                                                    {
+                                                        <h5 class="detail-price">@item.Price</h5>
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                        <div class="cart-section">
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-12 col-xs-6">
+                                                    <button class="AddCart btn btn-info"> <a href="/khoa-hoc/@item.MetaTitle-@item.ID">Xem chi tiết</a></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            y++;
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
 

@@ -1,0 +1,292 @@
+﻿@model Model.EF.Course
+
+@{
+    ViewBag.Title = "Mô tả khóa học";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var lessons = (List<Model.EF.Lesson>)ViewBag.Lesson;
+    var session = (UserLogin)Session[OnlineClass2.Common.CommonConstants.USER_SESSION];
+}
+
+@section style {
+    <style type="text/css">
+        a:hover {
+            text-decoration: none
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .not-active {
+            pointer-events: none;
+            cursor: default;
+            text-decoration: none;
+            color: black;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            transition: opacity 500ms;
+            visibility: hidden;
+            opacity: 0;
+        }
+
+            .overlay:target {
+                visibility: visible;
+                opacity: 1;
+            }
+
+        .popup {
+            margin: 70px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 5px;
+            width: 30%;
+            position: relative;
+            transition: all 5s ease-in-out;
+        }
+
+            .popup h2 {
+                margin-top: 0;
+                color: #333;
+                font-family: Tahoma, Arial, sans-serif;
+            }
+
+            .popup .close {
+                position: absolute;
+                top: 20px;
+                right: 30px;
+                transition: all 200ms;
+                font-size: 30px;
+                font-weight: bold;
+                text-decoration: none;
+                color: #333;
+            }
+
+            .popup #thamgia {
+            }
+
+            .popup .close:hover {
+                color: #06D85F;
+            }
+
+            .popup .content {
+                max-height: 30%;
+                overflow: auto;
+            }
+    </style>
+}
+
+@section jsFooter{
+    <script>
+        $(document).ready(function () {
+            $('#thongbao').hide();
+            $('#thongbao2').hide();
+
+            $("#bam").click(function () {
+                $('#popup1').css("visibility", "visible");
+                $('#popup1').css("opacity", 1);
+            });
+
+            $("#close").click(function (event) {
+                event.preventDefault();
+                $('#popup1').css("visibility", "hidden");
+                $('#popup1').css("opacity", 0);
+            });
+
+            $("#huy").click(function (event) {
+                $('#popup1').css("visibility", "hidden");
+                $('#popup1').css("opacity", 0);
+            });
+
+            $("#thamgia").click(function () {
+                $('#popup1').css("visibility", "hidden");
+                $('#popup1').css("opacity", 0);
+                $('#thongbao').slideDown(500).delay(2000).slideUp(500);
+                console.log($('#courseID').val());
+                console.log($('#userID').val());
+                var data = { courseID: $('#courseID').val(), userID: $('#userID').val() };
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("SendCode", "Enrollment")',
+                    data: JSON.stringify(data),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "html",
+                    success: function (res) {
+                        console.log(res);
+                    }
+                });
+            });
+
+            $('#mienphi').click(function () {
+                $('#thongbao2').slideDown(500).delay(2000);
+                var data = { courseID: $('#courseID').val(), userID: $('#userID').val() };
+                $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("JoinCourse", "Enrollment")',
+                        data: JSON.stringify(data),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "html",
+                        success: function (res) {
+                            console.log(res);
+                        }
+                });
+                window.location.reload(true).delay(3000);
+            });
+
+        });
+    </script>
+}
+
+<p class="alert alert-success" id="thongbao">Kiểm tra Email để nhận mã xác nhận khóa học!</p>
+<p class="alert alert-success" id="thongbao2">Tham gia thành công</p>
+<br />
+<div class="headerview col-md-12">
+    <div class="col-md-5 imgHeadview">
+        <img src="@Model.Image" width="80%" height="auto">
+    </div>
+    <div class="col-md-7 rightHeadview">
+        <h1>@Model.Name</h1>
+        <h3>Mô tả khóa học</h3>
+        <div style="text-align: justify;">
+            @Html.Raw(Model.Description)
+        </div>
+        <div>
+            @if (@Model.Price == 0)
+            {
+                <h4 class="price" style="color:tomato">
+                    Miễn phí
+                </h4>
+            }
+            else
+            {
+                if (Model.PromotonPrice < Model.Price)
+                {
+                    <h4 class="price">
+                        Giá: <span class="pro-price">@Model.PromotonPrice</span> <span class="x-price">@Model.Price</span>
+                    </h4>
+                }
+                else
+                {
+                    <h4 class="price">
+                        Giá: <span class="detail-price">@Model.Price</span>
+                    </h4>
+                }
+            }
+            @{var c = false; }
+            @if (session == null)
+            {
+                <button class="btn btn-success" type="button"><a href="/dang-nhap" style="color:white">Tham gia</a></button>
+            }
+            else
+            {
+                foreach (var item in session.ListEnroll)
+                {
+                    if (Model.ID == item.ID)
+                    {
+                        <h5 style="color:indigo">Bạn đã tham gia khóa học này</h5>
+                        <a href="/hoc/@item.MetaTitle-@item.ID-@item.UserID" class="btn btn-info"> Vào học</a>
+                        c = true;
+                        break;
+                    }
+                }
+                if (!c)
+                {
+                    if (Model.Price > 0)
+                    {
+                        <button class="btn btn-success" type="button" id="bam">Tham gia</button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-success" type="button" id="mienphi">Tham gia</button>
+                    }
+                }
+            };
+        </div>
+    </div>
+</div>
+
+<br>
+
+
+<div class="col-md-12" style="margin-top: 20px;">
+
+    @if (c)
+    {
+    }
+    else
+    {
+        <table>
+            <tr>
+                <td><h2 style="text-align: center;">Danh sách bài giảng</h2></td>
+            </tr>
+
+            @{
+                var i = 1;
+            }
+
+            @foreach (var less in lessons)
+            {
+                if (i == 1)
+                {
+                    <tr>
+                        <td class="row">
+                            <div class="col-md-8">
+                                <h5><i class="fa fa-video-camera"></i><a href="/hoc-thu/@Model.MetaTitle-@Model.ID/@less.MetaTitle-@less.ID"> @Html.Raw(less.Title)</a></h5>
+                            </div>
+                            <div class="col-md-4">
+                                <button class="btn btn-info" style="float:right"><a href="/hoc-thu/@Model.MetaTitle-@Model.ID/@less.MetaTitle-@less.ID" style="color: white">Học thử</a></button>
+                            </div>
+                        </td>
+                    </tr>
+                    i++;
+                }
+                else
+                {
+                    <tr>
+                        <td class="row">
+                            <div class="col-md-8">
+                                <h5><i class="fa fa-video-camera"></i><a class="not-active" href="/bai-giang/@Model.MetaTitle-@Model.ID/@less.MetaTitle-@less.ID"> @Html.Raw(less.Title)</a></h5>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    }
+</div>
+
+
+<div id="popup1" class="overlay">
+    <div class="popup">
+        <h2>Thông báo</h2>
+        <a class="close" href="#" id="close">&times;</a>
+        <div class="content">
+            Bạn có đồng ý thanh toán để tham gia khóa học
+        </div>
+        <br />
+        <div>
+            <input type="text" value="@Model.ID" id="courseID" hidden />
+            <input type="text" value="@session.UserID" id="userID" hidden />
+            <button class="btn btn-primary" id="thamgia">Đồng ý</button>
+            <button class="btn btn-danger" id="huy">Hủy</button>
+        </div>
+    </div>
+</div>
+

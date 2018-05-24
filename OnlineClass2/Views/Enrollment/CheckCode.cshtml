@@ -1,0 +1,57 @@
+﻿@model Model.EF.Course
+@{
+    ViewBag.Title = "Xác nhận mã khóa học";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var session = (UserLogin)Session[OnlineClass2.Common.CommonConstants.USER_SESSION];
+}
+
+@section jsFooter{
+    <script>
+        $(document).ready(function () {
+            $('#thongbao1').hide();
+            $('#thongbao2').hide();
+            $('#move').hide();
+            $('#check').click(function () {
+                var code1 = $('#code').val();
+                var code2 = $('#code2').val();
+                if (code1 == code2) {
+                    $('#thongbao1').slideDown(500).delay(2000);
+                    $('#check').attr('disabled', 'disabled');
+                    $('#move').show();
+
+                    var data = { courseID: $('#courseID').val(), userID: $('#userID').val() };
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("JoinCourse", "Enrollment")',
+                        data: JSON.stringify(data),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "html",
+                        success: function (res) {
+                            console.log(res);
+                        }
+                    });
+                }
+                else {
+                    $('#thongbao2').slideDown(500).delay(2000).slideUp(500);
+                    $('#code').val("");
+                }
+            });
+        });
+    </script>
+}
+
+<h2>Xác nhận khóa học @Model.Name</h2>
+
+<p id="thongbao1" class="alert alert-success">Xác nhận thành công!</p>
+<p id="thongbao2" class="alert alert-danger">Mã xác nhận không chính xác</p>
+
+<input type="text" value="@Model.Code" id="code2" hidden />
+<input type="text" value="@Model.ID" id="courseID" hidden />
+<input type="text" value="@session.UserID" id="userID" hidden />
+
+<label>Mã khóa học</label>
+<input type="text" class="form-control" id="code" placeholder="Nhập mã khóa học">
+<br />
+<button id="check" class="btn btn-default">Xác nhận</button>
+
+<button id="move" class="btn btn-success"><a href="#" style="color:white"></a></button>

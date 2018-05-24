@@ -1,0 +1,1389 @@
+﻿
+
+.ribbon-wrapper {
+    position: relative;
+    border-bottom: 0px solid #ccc;
+    border-top: 10px solid #ccc;
+    -moz-border-bottom-colors: rgba(0, 0, 0, 0.02) rgba(0, 0, 0, 0.04) rgba(0, 0, 0, 0.06) rgba(0, 0, 0, 0.08) rgba(0, 0, 0, 0.10) rgba(0, 0, 0, 0.12) rgba(0, 0, 0, 0.14) rgba(0, 0, 0, 0.16) rgba(0, 0, 0, 0.18) rgba(0, 0, 0, 0.20);
+    -webkit-border-bottom-colors: rgba(0, 0, 0, 0.02) rgba(0, 0, 0, 0.04) rgba(0, 0, 0, 0.06) rgba(0, 0, 0, 0.08) rgba(0, 0, 0, 0.10) rgba(0, 0, 0, 0.12) rgba(0, 0, 0, 0.14) rgba(0, 0, 0, 0.16) rgba(0, 0, 0, 0.18) rgba(0, 0, 0, 0.20);
+    -moz-border-top-colors: rgba(0, 0, 0, 0.02) rgba(0, 0, 0, 0.04) rgba(0, 0, 0, 0.06) rgba(0, 0, 0, 0.08) rgba(0, 0, 0, 0.10) rgba(0, 0, 0, 0.12) rgba(0, 0, 0, 0.14) rgba(0, 0, 0, 0.16) rgba(0, 0, 0, 0.18) rgba(0, 0, 0, 0.20);
+    -webkit-border-top-colors: rgba(0, 0, 0, 0.02) rgba(0, 0, 0, 0.04) rgba(0, 0, 0, 0.06) rgba(0, 0, 0, 0.08) rgba(0, 0, 0, 0.10) rgba(0, 0, 0, 0.12) rgba(0, 0, 0, 0.14) rgba(0, 0, 0, 0.16) rgba(0, 0, 0, 0.18) rgba(0, 0, 0, 0.20);
+}
+
+.ribbon-front {
+    background-color: cadetblue;
+    height: 40px;
+    width: 100%;
+    position: relative;
+    left: -10px;
+    z-index: 2;
+}
+
+.ribbon-front,
+.ribbon-back-left,
+.ribbon-back-right {
+    -moz-box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
+    -khtml-box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
+    -webkit-box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
+    -o-box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
+}
+
+.ribbon-edge-topleft,
+.ribbon-edge-topright,
+.ribbon-edge-bottomleft,
+.ribbon-edge-bottomright {
+    position: absolute;
+    z-index: 1;
+    border-style: solid;
+    height: 0px;
+    width: 0px;
+}
+
+.ribbon-edge-topleft,
+.ribbon-edge-topright {
+}
+
+.ribbon-edge-bottomleft,
+.ribbon-edge-bottomright {
+    top: 40px;
+}
+
+.ribbon-edge-topleft,
+.ribbon-edge-bottomleft {
+    left: -10px;
+    border-color: transparent #99c transparent transparent;
+}
+
+.ribbon-edge-topleft {
+    top: -10px;
+    border-width: 10px 10px 0 0;
+}
+
+.ribbon-edge-bottomleft {
+    border-width: 0 10px 0px 0;
+}
+
+.ribbon-edge-topright,
+.ribbon-edge-bottomright {
+    left: 100px;
+    border-color: transparent transparent transparent #99c;
+}
+
+.ribbon-edge-topright {
+    top: 0px;
+    border-width: 0px 0 0 0px;
+}
+
+.ribbon-edge-bottomright {
+    border-width: 0 0 0px 0px;
+}
+
+.ribbon-back-left {
+    position: absolute;
+    top: -10px;
+    left: -30px;
+    width: 30px;
+    height: 40px;
+    background-color: cadetblue;
+    z-index: 0;
+}
+
+.ribbon-back-right {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 0px;
+    height: 40px;
+    z-index: 0;
+}
+
+.courseTitle {
+    font-weight: bold;
+    font-size: 25px;
+    color: white;
+    padding-left: 1%;
+}
+
+.shortDescription {
+    font-weight: 400;
+    font-size: 15px;
+    font-style: italic;
+}
+/* dau sao */
+.ratting {
+    color: #17aa1c;
+}
+
+.ratingCourse {
+    font-size: 25px;
+    color: #17aa1c;
+}
+
+span.students {
+    color: red;
+}
+
+.DeCuongAn {
+    display: none;
+}
+
+.courseVideo_minimize {
+    display: none;
+}
+
+
+/*giang vien*/
+.intructor .imgAvatar, .imgthumbnail {
+    width: 150px;
+    height: 150px;
+}
+
+.authorName {
+    font-size: 15px;
+    font-weight: bold;
+}
+/*gia tien*/
+.priceBeforeSale_ {
+    color: rgba(0,0,0,0.55);
+    font-size: 14px;
+}
+
+.coursePrice_ {
+    font-size: 25px;
+    padding-left: 18px;
+}
+
+.sale {
+    font-size: 15px;
+    color: red;
+    font-weight: bold;
+}
+
+.courseRegister {
+    text-align: center;
+    padding: 0 5% 0 5%;
+}
+
+.infoTopRight {
+    text-align: left;
+    padding: 0 5% 0 5%;
+}
+
+#registerCourse_, .Comingsoon, .registerCourse {
+    width: 100%;
+    font-weight: bold;
+    border-radius: 0;
+    font-size: 17px;
+    text-align: center;
+    border-radius: 3px;
+}
+
+/*lesson*/
+.Lessons {
+    text-align: left;
+}
+
+.Lessons {
+    font-size: 15px;
+}
+
+.textLessons {
+    width: 60%;
+    vertical-align: top;
+    /*font-weight: bold;*/
+    padding-top: 3%;
+}
+
+.valueLessons {
+}
+/*menu*/
+
+/***
+Bootstrap Line Tabs by @keenthemes
+A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
+Licensed under MIT
+***/
+
+/* Tabs panel */
+.tabbable-panel {
+    border: 1px solid #eee;
+    padding: 10px;
+}
+
+/* Default mode */
+.tabbable-line > .nav-tabs {
+    border: none;
+    margin: 0px;
+}
+
+    .tabbable-line > .nav-tabs > li {
+        margin-right: 2px;
+    }
+
+        .tabbable-line > .nav-tabs > li > a {
+            border: 0;
+            margin-right: 0;
+            color: #737373;
+        }
+
+            .tabbable-line > .nav-tabs > li > a > i {
+                color: #a6a6a6;
+            }
+
+        .tabbable-line > .nav-tabs > li.open, .tabbable-line > .nav-tabs > li:hover {
+            border-bottom: 4px solid #fbcdcf;
+        }
+
+            .tabbable-line > .nav-tabs > li.open > a, .tabbable-line > .nav-tabs > li:hover > a {
+                border: 0;
+                background: none !important;
+                color: #333333;
+            }
+
+                .tabbable-line > .nav-tabs > li.open > a > i, .tabbable-line > .nav-tabs > li:hover > a > i {
+                    color: #a6a6a6;
+                }
+
+            .tabbable-line > .nav-tabs > li.open .dropdown-menu, .tabbable-line > .nav-tabs > li:hover .dropdown-menu {
+                margin-top: 0px;
+            }
+
+        .tabbable-line > .nav-tabs > li.active {
+            border-bottom: 4px solid #f3565d;
+            position: relative;
+        }
+
+            .tabbable-line > .nav-tabs > li.active > a {
+                border: 0;
+                color: #333333;
+            }
+
+                .tabbable-line > .nav-tabs > li.active > a > i {
+                    color: #404040;
+                }
+
+.tabbable-line > .tab-content {
+    margin-top: -3px;
+    background-color: #fff;
+    border: 0;
+    border-top: 1px solid #eee;
+    padding: 15px 0;
+}
+
+.portlet .tabbable-line > .tab-content {
+    padding-bottom: 0;
+}
+
+/* Below tabs mode */
+
+.tabbable-line.tabs-below > .nav-tabs > li {
+    border-top: 4px solid transparent;
+}
+
+    .tabbable-line.tabs-below > .nav-tabs > li > a {
+        margin-top: 0;
+    }
+
+    .tabbable-line.tabs-below > .nav-tabs > li:hover {
+        border-bottom: 0;
+        border-top: 4px solid #fbcdcf;
+    }
+
+    .tabbable-line.tabs-below > .nav-tabs > li.active {
+        margin-bottom: -2px;
+        border-bottom: 0;
+        border-top: 4px solid #f3565d;
+    }
+
+.tabbable-line.tabs-below > .tab-content {
+    margin-top: -10px;
+    border-top: 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.ulMenuFixed li, .ulMenuFixed li a {
+    font-weight: bold;
+}
+
+@media screen and (max-width: 736px) {
+    .ulMenuFixed li, .ulMenuFixed li a {
+        padding-right: 1%;
+        font-weight: bold;
+    }
+}
+/*Nội dung đề cương*/
+.courseBodynav h1, .courseBodynav h2, .courseBodynav h3, .courseBodynav h4, .courseBodynav h5, .courseBodynav h6, .courseBodynav span, .courseBodynav a {
+    font-family: 'OpenSans-Regular';
+    text-align: left;
+    padding: 0;
+    color: cadetblue;
+}
+
+h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0 0 10px;
+    color: #333;
+    padding: 0;
+}
+
+.courseDescription {
+}
+
+.Target {
+    color: cadetblue;
+}
+
+.chapter {
+    font-size: 15px;
+    font-weight: 500;
+    color: #000;
+    background-color: #f9f9f9;
+    padding: 20px;
+}
+
+.unit {
+    font-size: 15px !important;
+    padding-top: 10px !important;
+    color: #1376d7 !important;
+    cursor: pointer;
+    font-weight: lighter;
+}
+
+.timeout {
+    text-align: right;
+    color: #1376d7 !important;
+    margin-top: 7px;
+}
+
+.subtitles {
+    font-size: 15px;
+    color: #000 !important;
+    text-align: left;
+    /*padding-left: 15px !important;
+    padding-bottom: 15px !important;*/
+    font-style: italic;
+}
+/* Danh gia*/
+.titleAvgMark {
+    color: green !important;
+    font-size: 18px;
+}
+
+.avgMark {
+    color: green !important;
+    font-size: 55px !important;
+}
+
+.rattingCourse_ {
+    color: green !important;
+}
+
+.tblDiemTB tr, .tblDiemTB td {
+    color: green !important;
+    padding: 0.5%;
+}
+
+.tblDiemTB {
+    width: 100%;
+}
+
+    .tblDiemTB progress {
+        width: 100%;
+        background-color: #D7D7D7;
+    }
+
+    .tblDiemTB progress {
+        /* style rules */
+        background-color: #D7D7D7;
+    }
+
+        .tblDiemTB progress::-webkit-progress-bar {
+            /* style rules */
+            background-color: #D7D7D7;
+        }
+
+        .tblDiemTB progress::-webkit-progress-value {
+            /* style rules */
+            background-color: green;
+        }
+
+        .tblDiemTB progress::-moz-progress-bar {
+            /* style rules */
+            background-color: #D7D7D7;
+        }
+
+    .tblDiemTB progress {
+        /* style rules */
+        background-color: #D7D7D7;
+    }
+/* Danh gia binh luan */
+.rattingOutLine {
+}
+
+.avtUser {
+    width: 30px;
+    height: 30px;
+}
+
+.rattingTitle {
+    font-size: 18px !important;
+    color: rgba(0,0,0,0.55) !important;
+    font-weight: bold;
+    margin-left: 5% !important;
+}
+
+.rattingContent {
+    color: rgba(0,0,0,0.55) !important;
+    font-size: 15px !important;
+    margin-left: 5% !important;
+}
+/*Khóa học liên quan*/
+.titleSimilar {
+    color: rgba(0,0,0,0.55) !important;
+    font-family: 'Roboto',sans-serif !important;
+    font-size: 25px;
+    text-align: left;
+    font-weight: bold;
+    padding: 0;
+}
+/*css course nổi bật*/
+/*css course nổi bật*/
+
+
+.totop {
+    position: fixed;
+    bottom: 10px;
+    right: 20px;
+}
+
+    .totop a {
+        display: none;
+    }
+
+
+
+@media screen and (max-width: 736px) {
+}
+
+
+.allcourse {
+    margin-top: 10px;
+}
+/*css giao dien*/
+
+#ScrollOutline {
+    display: none;
+}
+
+.menuOutLine {
+    width: 100%;
+    height: auto;
+    background-color: #fff;
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+
+.popupRegister {
+    position: fixed;
+    z-index: 100000;
+    background-color: rgba(0,0,0,.5);
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.titleConfirm {
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+}
+
+.buttonRegister {
+    text-align: center;
+}
+
+.btnDongY, .btnHuyBo {
+    font-weight: bold;
+    border-radius: 2px;
+}
+
+.popupRegister {
+    display: none;
+}
+
+
+
+#loginBox_ {
+    padding-top: 3%;
+    padding-left: 30%;
+}
+
+.buttonDN {
+    text-align: right;
+}
+
+#btnGoogle {
+    background-color: #f67b3d;
+    font-weight: bold;
+    color: white;
+}
+
+#btnFacebook {
+    background-color: #4862a3;
+    font-weight: bold;
+    color: white;
+}
+
+.formThongBao {
+    display: block;
+}
+
+@media screen and (max-width: 736px) {
+    .confirmRegister {
+        top: 30%;
+        left: 0;
+        width: 100%;
+        height: auto;
+        padding-bottom: 5%;
+        padding-top: 5%;
+        text-align: center;
+    }
+
+    #loginBox_ {
+        padding-top: 3%;
+        padding-left: 0%;
+    }
+}
+
+.contentTarget li {
+    margin-left: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+
+.tabContent {
+    display: block;
+}
+
+.tab1, .tab2, .tab3 {
+    height: 65px;
+}
+/*Thao luan*/
+.titlebanking {
+    clear: both;
+    background: rgb(10, 99, 99);
+    width: 100%;
+    text-align: left;
+    padding: 1% !important;
+    font-size: 18pt;
+    font-weight: bold;
+    color: #fff !important;
+    line-height: 50px;
+}
+
+.btnlearning {
+    color: #fff;
+}
+
+.infoRight {
+    position: fixed;
+    z-index: 199;
+    background-color: #fff;
+    right: 20px;
+    width: 28%;
+    border: 1px solid forestgreen;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+.infoRight {
+    display: block !important;
+}
+
+@media screen and (max-width: 736px) {
+
+    .infoRight {
+        position: static;
+        z-index: 199;
+        background-color: #fff;
+        right: auto;
+        width: auto;
+        display: block;
+    }
+}
+/*udermy*/
+.container {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.full-width--streamer {
+    background: linear-gradient(#333,#333,rgba(51,51,51,0));
+    color: #fff;
+    background-color: rgba(0,0,0,.8);
+}
+
+.container-fluid:after, .container-fluid:before, .container:after, .container:before, .row:after, .row:before {
+    content: " ";
+    display: table;
+}
+
+.full-width--streamer {
+    background: linear-gradient(#333,#333,rgba(51,51,51,0));
+    color: #fff;
+    background-color: rgba(0,0,0,.8);
+}
+
+.container-fluid:after, .container:after, .row:after {
+    clear: both;
+}
+
+.container-fluid:after, .container-fluid:before, .container:after, .container:before, .row:after, .row:before {
+    content: " ";
+    display: table;
+}
+
+.clp-lead {
+    padding-bottom: 40px;
+}
+
+    .clp-lead .clp-lead__title {
+        font-size: 36px;
+        line-height: 41px;
+    }
+
+    .clp-lead .clp-lead__headline {
+        font-size: 21px;
+        line-height: 27px;
+    }
+
+    .clp-lead .clp-lead__element-row {
+        -webkit-flex-direction: row;
+        -moz-flex-direction: row;
+        -ms-flex-direction: row;
+        -o-flex-direction: row;
+        flex-direction: row;
+        -webkit-justify-content: flex-start;
+        -moz-justify-content: flex-start;
+        -ms-flex-pack: flex-start;
+        -o-justify-content: flex-start;
+        justify-content: flex-start;
+        -webkit-flex-wrap: wrap;
+        -moz-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        -o-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
+
+    .clp-lead .clp-lead__element-row {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: column;
+        -moz-flex-direction: column;
+        -ms-flex-direction: column;
+        -o-flex-direction: column;
+        flex-direction: column;
+        -webkit-justify-content: center;
+        -moz-justify-content: center;
+        -ms-flex-pack: center;
+        -o-justify-content: center;
+        justify-content: center;
+    }
+
+*, :after, :before {
+    /*-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;*/
+}
+
+.clp-lead .clp-lead__element-row:last-child {
+    float: left;
+    margin-right: 10px;
+}
+
+.container--component-margin {
+    margin-bottom: 40px;
+}
+
+.right-col__content {
+    background-color: #fff;
+    border: 1px solid #dedede;
+    border-radius: 4px;
+    color: #333;
+    margin-top: 18px;
+    padding: 3px;
+    position: absolute;
+    top: 10px;
+    width: calc(80%);
+    z-index: 0;
+}
+
+.introduction-asset {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    -o-flex-direction: column;
+    flex-direction: column;
+    border: 1px solid #fff;
+    position: relative;
+}
+
+    .introduction-asset .introduction-asset__placeholder {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: column;
+        -moz-flex-direction: column;
+        -ms-flex-direction: column;
+        -o-flex-direction: column;
+        flex-direction: column;
+        -webkit-justify-content: flex-end;
+        -moz-justify-content: flex-end;
+        -ms-flex-pack: flex-end;
+        -o-justify-content: flex-end;
+        justify-content: flex-end;
+        background: linear-gradient(transparent,transparent,#000);
+        color: #fff;
+        font-weight: 700;
+        height: 100%;
+        position: absolute;
+        text-align: center;
+        width: 100%;
+    }
+
+.play-button-trigger {
+    cursor: pointer;
+}
+
+.introduction-asset .introduction-asset__placeholder .play-button {
+    opacity: 1;
+    visibility: visible;
+}
+
+.play-button-trigger .play-button {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    /*background: url(/staticx/udemy/js/webpack/icon-play.ac3f32ecb72a0c3f674fa5a3f3062a56.svg) no-repeat;*/
+    background-size: auto 50%;
+    background-position: 50%;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: opacity .15s ease-in-out;
+    -moz-transition: opacity .15s ease-in-out;
+    -ms-transition: opacity .15s ease-in-out;
+    -o-transition: opacity .15s ease-in-out;
+    transition: opacity .15s ease-in-out;
+    -webkit-transition: -webkit-transform .15s ease-in-out;
+    -moz-transition: -moz-transform .15s ease-in-out;
+    -o-transition: -o-transform .15s ease-in-out;
+    transition: transform .15s ease-in-out;
+}
+
+input {
+    -webkit-appearance: textfield;
+    background-color: white;
+    -webkit-rtl-ordering: logical;
+    user-select: text;
+    cursor: auto;
+    padding: 1px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: initial;
+    border-image: initial;
+}
+
+.buy-for-team__link {
+    color: #999;
+    padding-right: 20px;
+    text-decoration: none;
+}
+
+.gift-this-course__link {
+    color: #999;
+    padding-right: 20px;
+    text-decoration: none;
+}
+
+.clp-lead {
+    padding-bottom: 40px;
+}
+
+.left-col {
+    padding-left: 10%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-align: left;
+}
+
+.rattingCourse {
+    color: palegreen;
+    font-size: 17px;
+    cursor: pointer;
+    float: left;
+}
+
+.likes {
+    font-size: 17px;
+    color: #fff !important;
+}
+
+.stundets {
+    font-size: 17px;
+    color: #fff !important;
+    float: left;
+    padding-left: 10%;
+}
+
+.views {
+    float: right;
+    font-size: 17px;
+    color: #fff !important;
+}
+
+@media screen and (max-width:768px) {
+    .streamer--complete {
+        clear: both;
+        float: left;
+        padding: 0;
+        margin: 0;
+        padding: 15px;
+    }
+
+    .rattingCourse, .stundets, .views, .likes {
+        clear: both;
+        float: left;
+        padding: 0;
+        margin: 0;
+    }
+}
+
+.what-you-get {
+    background-color: #f9f9f9;
+    border: 1px solid #dedede;
+    padding: 10px 15px;
+}
+/* muc tieu */
+.what-you-get__content h3, .what-you-get__content h4, .what-you-get__content h2, .what-you-get__content h1, .what-you-get__content h6 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0 0 10px;
+}
+
+.what-you-get__content ol, .what-you-get__items {
+    -webkit-align-items: flex-start;
+    -ms-flex-align: flex-start;
+    align-items: flex-start;
+    -webkit-justify-content: space-between;
+    -moz-justify-content: space-between;
+    -ms-flex-pack: space-between;
+    -o-justify-content: space-between;
+    justify-content: space-between;
+    -webkit-flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    -o-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.what-you-get__content ol, .what-you-get__items {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+}
+
+.what-you-get__item {
+    padding: 5px;
+    line-height: 25px;
+    list-style: none;
+}
+
+    .what-you-get__item i {
+        font-size: 17px;
+        color: forestgreen;
+    }
+
+.udi {
+    font-family: UdemyIcons !important;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.GTKH {
+    padding: 0;
+}
+
+    .GTKH img {
+        width: auto;
+        height: auto;
+    }
+
+.TieuDeDeCuong {
+    font-weight: normal !important;
+}
+
+.TieuDeChuong {
+    font-size: 13px;
+    font-weight: normal !important;
+}
+
+.courseDescription h3 {
+    font-weight: normal !important;
+}
+
+.contentOutLine {
+}
+
+
+
+.row {
+}
+
+.timoutChapter {
+    margin: 0;
+    color: #000 !important;
+}
+
+.chapter {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    border: 1px solid #dedede;
+    cursor: pointer;
+}
+
+.divUnit {
+    box-sizing: border-box;
+    border-bottom: 1px solid #dedede;
+    border-left: 1px solid #dedede;
+    border-right: 1px solid #dedede;
+    margin-top: -3px;
+    padding: 15px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+    .divUnit:first-child {
+        border: none;
+    }
+
+.unit {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    font-weight: normal;
+}
+
+.iconChapter {
+    color: #1376d7;
+}
+/* danh gia */
+.ratingBody {
+    padding-left: 9%;
+}
+
+.w3-light-grey, .w3-hover-light-grey:hover, .w3-light-gray, .w3-hover-light-gray:hover {
+    margin-top: 3px;
+    color: #000 !important;
+    background-color: #f1f1f1 !important;
+}
+
+.w3-round-xlarge {
+    border-radius: 16px;
+}
+
+.w3-round-xxlarge {
+    border-radius: 32px;
+}
+
+.w3-container:after, .w3-container:before, .w3-panel:after, .w3-panel:before, .w3-row:after, .w3-row:before, .w3-row-padding:after, .w3-row-padding:before,
+.w3-cell-row:before, .w3-cell-row:after, .w3-clear:after, .w3-clear:before, .w3-bar:before, .w3-bar:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.w3-container, .w3-panel {
+    padding: 0.01em 16px;
+}
+
+.w3-panel {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.w3-blue, .w3-hover-blue:hover {
+    color: #fff !important;
+    background-color: green !important;
+}
+
+.w3-blue-grey, .w3-hover-blue-grey:hover, .w3-blue-gray, .w3-hover-blue-gray:hover {
+    color: #fff !important;
+    background-color: #607d8b !important;
+}
+
+.w3-round-xlarge {
+    border-radius: 3px;
+}
+
+.w3-round-xxlarge {
+    border-radius: 32px;
+}
+
+.faPlus {
+    color: green;
+    font-size: 17px;
+}
+
+.faSub {
+    color: #f1f1f1;
+    font-size: 17px;
+}
+
+.luotBC {
+    color: #1376d7;
+}
+
+._likes_ {
+    color: #fff;
+}
+
+.unit .fa {
+    /*opacity:.3;*/
+}
+
+.KhoaHocNoiBat {
+    background: none !important;
+}
+
+.nonPosition {
+    position: initial;
+}
+
+.viewOutLine {
+    color: #1376d7;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.imgAvatar {
+    width: 170px;
+    height: 170px;
+}
+
+.nCourse .fa {
+    font-size: 17px;
+}
+
+.iconPlay {
+    position: absolute;
+    z-index: 999999;
+    font-size: 40px;
+    color: white;
+    top: 17%;
+    left: 37%;
+    background: rgba(0,0,0,.5);
+    padding: 8%;
+    padding-left: 10%;
+    border-radius: 50%;
+}
+
+    .iconPlay:hover {
+        position: absolute;
+        z-index: 99;
+        font-size: 50px;
+        color: white;
+        top: 14%;
+        left: 34%;
+        background: rgba(0,0,0,.5);
+        padding: 9%;
+        padding-left: 13%;
+        border-radius: 50%;
+        -webkit-transition: 0.1s;
+        -o-transition: 0.1s;
+        -moz-transition: 0.1s;
+    }
+
+.popUpTrailer {
+    width: 100%;
+    position: fixed;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    background-color: rgba(0,0,0,.5);
+}
+
+.divTrailer {
+    margin-top: 50px;
+    margin-left: 20%;
+    width: 850px;
+    height: 480px;
+}
+
+@media screen and (max-width: 736px) {
+    .divTrailer {
+        position: fixed;
+        margin-top: 0;
+        margin-left: 0px;
+        width: 100%;
+        height: 95%;
+        bottom: 0;
+    }
+
+    .left-col {
+        padding: 0 5%;
+    }
+}
+
+.fa-close {
+    color: #fff;
+}
+
+.popUpTrailer {
+    display: none;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.authorI {
+    cursor: pointer !important;
+}
+
+#infoAuthor .label {
+    color: #000;
+}
+
+.fixedRegister {
+    position: fixed !important;
+    right: 0;
+    top: 0;
+}
+
+.introduction_asset__text {
+    padding: 20px 0px 20px 0px; /*left top bottom right*/
+}
+
+.coursePrice_ {
+    padding: 20px;
+}
+
+.btnReview {
+    background-color: transparent;
+    border: none;
+    color: #1376d7 !important;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 7px;
+}
+
+.clp-component-render {
+    position: relative;
+}
+
+.itemZoom {
+    margin: 0 !important;
+    height: auto;
+}
+
+.unit i {
+    padding-right: 15px;
+}
+
+.Chuong {
+    padding-left: 15px;
+}
+
+.iconChapter {
+    float: left;
+}
+
+.classReview, .classReview + div + div {
+    color: #333 !important;
+}
+
+    .classReview i {
+        color: rgba(0, 0, 0, 0.3);
+    }
+
+.iconChapter {
+    padding-right: 15px;
+}
+/* popup ghi danh*/
+#registerCourse {
+    width: 100%;
+    font-size: 25px;
+    padding: 10px;
+    font-weight: 300;
+    background-color:;
+}
+
+.itemLinkOutLine {
+    float: left;
+    padding-right: 5px;
+}
+
+    .itemLinkOutLine:hover {
+        color: #18aa1c;
+    }
+
+.register-header {
+    background-color: #4f9e52;
+    padding-bottom: 10px;
+}
+
+    .register-header > .close {
+        color: #000;
+    }
+
+.title-register {
+    font-size: 17px;
+    color: #fff;
+    font-weight: 300;
+}
+
+.courseNameMyclass, .priceCourse {
+    text-align: center;
+    font-weight: 500;
+    font-size: 17px;
+}
+
+.priceCourse {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+ul.rules {
+    padding: 0;
+    margin: 0;
+    float: left;
+    text-align: left;
+    list-style: none;
+}
+
+    ul.rules li {
+        padding: 5px 0px 5px 20px;
+    }
+
+        ul.rules li:last-child {
+            padding-bottom: 15px;
+        }
+
+        ul.rules li:before {
+            font-family: FontAwesome;
+            content: "\f005";
+            padding-right: 5px;
+            font-size: 15px;
+            color: #dedede;
+        }
+
+.socialOutLine {
+    padding-left: 15px;
+}
+
+.fixedRegister {
+    top: 30px;
+}
+/*Giang vien*/
+.ttA, .fnA {
+    font-size: 20px;
+}
+
+.divAuthor {
+    padding-bottom: 20px;
+}
+
+.infoAuthor i {
+    color: forestgreen;
+}
+/*@media (max-width: @screen-xs-min) {
+  .modal-xs { width: @modal-sm; }
+}*/
+@media screen and (max-width: 736px) {
+    .fixedRegister {
+        display: none !important;
+    }
+
+    .screenDesk {
+        display: none;
+    }
+
+    .DeCuongAn {
+        display: block;
+    }
+
+    .courseVideo_minimize {
+        display: block;
+    }
+
+    .titleCourseM {
+        display: inline-block !important;
+        font-size: 18px !important;
+        font-weight: bold;
+        width: 100% !important;
+        color: #fff;
+        padding: 10px;
+        background: cadetblue;
+    }
+
+    .ribbon-wrapper {
+        display: none;
+    }
+
+    .ratting {
+        color: #17aa1c;
+    }
+
+    .ratingCourse {
+        font-size: 15px;
+        color: #17aa1c;
+    }
+
+    span.students {
+        color: red;
+    }
+}
+
+.courseName .title span {
+    font-size: 15px !important;
+}
+
+.courseName span.likes {
+    color: #999 !important;
+}

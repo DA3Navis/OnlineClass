@@ -62,9 +62,8 @@ namespace Model.Dao
             {
                 var less = db.Lessons.Find(entity.ID);
                 less.Title = entity.Title;
-                less.Description = entity.Description;
-                less.Image = entity.Image;
                 less.LinkURL = entity.LinkURL;
+                less.YoutubeID = entity.YoutubeID;
                 db.SaveChanges();
                 return true;
             }
@@ -72,6 +71,11 @@ namespace Model.Dao
             {
                 return false;
             }
+        }
+
+        public List<Lesson> ListLess(long id)
+        {
+            return db.Lessons.Where(x => x.CourseID == id).ToList();
         }
     }
 }

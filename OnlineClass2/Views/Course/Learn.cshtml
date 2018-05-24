@@ -1,0 +1,118 @@
+﻿@model Model.EF.Course
+
+@{
+    ViewBag.Title = "Mô tả khóa học";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var lessons = (List<Model.EF.Lesson>)ViewBag.Lesson;
+    var session = (UserLogin)Session[OnlineClass2.Common.CommonConstants.USER_SESSION];
+}
+
+@section style {
+    <style type="text/css">
+        a:hover {
+            text-decoration: none
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .not-active {
+            pointer-events: none;
+            cursor: default;
+            text-decoration: none;
+            color: black;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            transition: opacity 500ms;
+            visibility: hidden;
+            opacity: 0;
+        }
+    </style>
+}
+
+@section jsFooter{
+    <script>
+
+    </script>
+}
+
+<div class="headerview col-md-12">
+    <div class="col-md-5 imgHeadview">
+        <img src="@Model.Image" width="80%" height="auto">
+    </div>
+    <div class="col-md-7 rightHeadview">
+        <h1>@Model.Name</h1>
+        <h3>Mô tả khóa học</h3>
+        <div style="text-align: justify;">
+            @Html.Raw(Model.Description)
+        </div>
+        @foreach (var item in session.ListEnroll)
+        {
+            if (Model.ID == item.ID)
+            {
+                <h4>Tiến độ: <span style="font-size:200%; color:sandybrown">@item.Advance/@item.CountLesson</span></h4>
+            }
+        }
+    </div>
+</div>
+
+<br>
+
+<div class="col-md-12" style="margin-top: 20px;">
+    <table>
+        <tr>
+            <td><h2 style="text-align: center;">Danh sách bài giảng</h2></td>
+        </tr>
+
+        @{
+            var i = 1;
+        }
+
+        @foreach (var less in lessons)
+        {
+            <tr>
+                <td class="row">
+                    <div class="col-md-8">
+                        <h5><i class="fa fa-video-camera"></i><a href="/bai-giang/@Model.MetaTitle-@Model.ID-@session.UserID/@less.MetaTitle-@less.ID"> @Html.Raw(less.Title)</a></h5>
+                    </div>
+                    <div class="col-md-2">
+                        @foreach(var item in session.ListDone)
+                        {
+                            if(less.ID == item.LessonID)
+                            {
+                                <h5 style="color:forestgreen"><b>Hoàn thành</b></h5>
+                                break;
+                            }
+                        }
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-info" style="float:right"><a href="/bai-giang/@Model.MetaTitle-@Model.ID-@session.UserID/@less.MetaTitle-@less.ID" style="color: white">Học</a></button>
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+
+

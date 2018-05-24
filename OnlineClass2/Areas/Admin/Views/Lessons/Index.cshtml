@@ -4,6 +4,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
+    var cates = (List<Model.EF.CourseCategory>)ViewBag.Cate;
 }
 
 @section header{
@@ -41,9 +42,7 @@
                         for (var i = 0; i < result.length; i++) {
                             rows += "<tr id='" + result[i].ID + "'>" +
                                 "<td>" + result[i].Title + "</td>" +
-                                "<td>" + result[i].Des + "</td>" +
-                                "<td><image width='100px' src='" + result[i].Img + "'/></td>" +
-                                "<td><a href='" + result[i].Link + "'>" + result[i].Link + "</a></td>" +
+                                "<td width=\"200px\"><a href='" + result[i].Link + "'>" + result[i].Link + "</a></td>" +
                                 "<td>" +
                                 "<a href='/Admin/Lessons/Edit/" + result[i].ID + "'>Sửa</a>" +
                                 "|" +
@@ -89,7 +88,7 @@
             <div class="col-lg-10">
                 <select id="comboboxCate" class="form-control">
                     <option value="-1">Chọn một chủ đề</option>
-                    @foreach (var category in ViewBag.Cate)
+                    @foreach (var category in cates)
                     {
                         <option value="@category.ID">@category.Name</option>
                     }
@@ -113,8 +112,6 @@
             <thead>
                 <tr>
                     <th>Tên khóa học</th>
-                    <th>Mô tả</th>
-                    <th>Hình ảnh</th>
                     <th>Link</th>
                     <th></th>
                 </tr>

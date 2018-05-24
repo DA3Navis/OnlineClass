@@ -72,6 +72,7 @@ namespace OnlineClass2.Areas.Admin.Controllers
                 }
 
                 var result = dao.Update(user);
+
                 if (result)
                 {
                     SetAlert("Cập nhật thành công", "success");

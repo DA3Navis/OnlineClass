@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Model.Dao;
 using Model.EF;
+using OnlineClass2.Common;
 
 namespace OnlineClass2.Areas.Admin.Controllers
 {
@@ -50,6 +51,12 @@ namespace OnlineClass2.Areas.Admin.Controllers
             {
                 var dao = new LessonDao();
 
+                var meta = Meta.ToMeta(less.Title);
+                less.MetaTitle = meta;
+                string path = less.YoutubeID;
+                int pos = path.LastIndexOf("/") + 1;
+                less.YoutubeID = path.Substring(pos, path.Length - pos);
+
                 long id = dao.Insert(less);
                 if (id > 0)
                 {
@@ -62,7 +69,7 @@ namespace OnlineClass2.Areas.Admin.Controllers
                 }
 
             }
-            return View("Index");
+            return View();
         }
 
 
@@ -103,7 +110,7 @@ namespace OnlineClass2.Areas.Admin.Controllers
         public ActionResult Edit(long id)
         {
             var dao = new LessonDao();
-            var less = dao.GetByID(id);            
+            var less = dao.GetByID(id);
             return View(less);
         }
 
@@ -114,6 +121,12 @@ namespace OnlineClass2.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var dao = new LessonDao();
+
+                var meta = Meta.ToMeta(model.Title);
+                model.MetaTitle = meta;
+                string path = model.YoutubeID;
+                int pos = path.LastIndexOf("/") + 1;
+                model.YoutubeID = path.Substring(pos, path.Length - pos);
 
                 var result = dao.Update(model);
                 if (result)
@@ -145,8 +158,6 @@ namespace OnlineClass2.Areas.Admin.Controllers
             {
                 ID = s.ID,
                 Title = s.Title,
-                Des = s.Description,
-                Img = s.Image,
                 Link = s.LinkURL
             }).ToList(), JsonRequestBehavior.AllowGet);
         }

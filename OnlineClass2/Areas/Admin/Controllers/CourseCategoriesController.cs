@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Model.Dao;
 using Model.EF;
+using OnlineClass2.Common;
 
 namespace OnlineClass2.Areas.Admin.Controllers
 {
@@ -37,6 +38,9 @@ namespace OnlineClass2.Areas.Admin.Controllers
             {
                 var dao = new CategoryDao();
 
+                var meta = Meta.ToMeta(cate.Name);
+                cate.MetaTitle = meta;
+
                 long id = dao.Insert(cate);
                 if (id > 0)
                 {
@@ -58,13 +62,16 @@ namespace OnlineClass2.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(CourseCategory user)
+        public ActionResult Edit(CourseCategory cate)
         {
             if (ModelState.IsValid)
             {
                 var dao = new CategoryDao();
 
-                var result = dao.Update(user);
+                var meta = Meta.ToMeta(cate.Name);
+                cate.MetaTitle = meta;
+
+                var result = dao.Update(cate);
                 if (result)
                 {
                     SetAlert("Cập nhật thành công", "success");

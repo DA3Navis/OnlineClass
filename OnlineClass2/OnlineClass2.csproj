@@ -165,19 +165,25 @@
     <Compile Include="Areas\Admin\Controllers\CourseCategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\CoursesController.cs" />
     <Compile Include="Areas\Admin\Controllers\LessonsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SlidesController.cs" />
     <Compile Include="Areas\Admin\Views\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
+    <Compile Include="Common\Code.cs" />
     <Compile Include="Common\CommonConstants.cs" />
     <Compile Include="Common\Encrytor.cs" />
+    <Compile Include="Common\Meta.cs" />
+    <Compile Include="Controllers\CourseController.cs" />
+    <Compile Include="Controllers\EnrollmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Enrollment.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\PasswordRecovery.cs" />
     <Compile Include="Models\RegisterModel.cs" />
@@ -1395,6 +1401,22 @@
     <Content Include="Assets\admin\vendor\morrisjs\morris.min.js" />
     <Content Include="Assets\admin\vendor\raphael\raphael.js" />
     <Content Include="Assets\admin\vendor\raphael\raphael.min.js" />
+    <Content Include="Assets\client\css\bootstrap-theme.min.css" />
+    <Content Include="Assets\client\css\bootstrap.min.css" />
+    <Content Include="Assets\client\css\Lession.css" />
+    <Content Include="Assets\client\css\Login2.css" />
+    <Content Include="Assets\client\css\style.css" />
+    <Content Include="Assets\client\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Assets\client\images\giaotiep.jpg" />
+    <Content Include="Assets\client\images\homeicon.png" />
+    <Content Include="Assets\client\images\khoahoc.png" />
+    <Content Include="Assets\client\images\khoahoc1.jpg" />
+    <Content Include="Assets\client\images\slider2.jpg" />
+    <Content Include="Assets\client\images\tuvung.jpg" />
+    <Content Include="Assets\client\js\bootstrap.min.js" />
+    <Content Include="Assets\client\js\jquery-3.3.1.min.js" />
+    <Content Include="Assets\client\js\script.js" />
+    <Content Include="Assets\client\js\scriptLession.js" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -1481,6 +1503,13 @@
     <Content Include="Areas\Admin\Views\Lessons\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Lessons\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Lessons\Delete.cshtml" />
+    <Content Include="Assets\client\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Assets\client\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Assets\client\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Assets\client\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Areas\Admin\Views\Slides\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Slides\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Slides\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1494,7 +1523,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -1502,22 +1533,29 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\ComfirmEmail.cshtml" />
     <Content Include="Views\User\PasswordRecovery.cshtml" />
     <Content Include="Views\User\Recovery.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\MainMenu.cshtml" />
+    <Content Include="Views\Course\Cate.cshtml" />
+    <Content Include="Views\Course\Detail.cshtml" />
+    <Content Include="Views\Enrollment\Index.cshtml" />
+    <Content Include="Views\Enrollment\CheckCode.cshtml" />
+    <Content Include="Views\User\EnrollCourse.cshtml" />
+    <Content Include="Views\Course\Demo.cshtml" />
+    <Content Include="Views\Course\Learn.cshtml" />
+    <Content Include="Views\Course\Lesson.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Intro.cshtml" />
+    <Content Include="Views\User\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
-    <Folder Include="Assets\client\" />
     <Folder Include="Views\Email\" />
   </ItemGroup>
   <ItemGroup>

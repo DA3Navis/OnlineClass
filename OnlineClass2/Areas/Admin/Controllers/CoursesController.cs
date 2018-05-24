@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Model.Dao;
+using OnlineClass2.Common;
 using Model.EF;
 
 namespace OnlineClass2.Areas.Admin.Controllers
@@ -47,6 +48,13 @@ namespace OnlineClass2.Areas.Admin.Controllers
             {
                 var dao = new CourseDao();
 
+                var meta = Meta.ToMeta(course.Name);
+
+                var code = Code.MakeCode();
+
+                course.Code = code;
+                course.MetaTitle = meta;
+
                 long id = dao.Insert(course);
                 if (id > 0)
                 {
@@ -79,6 +87,9 @@ namespace OnlineClass2.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var dao = new CourseDao();
+
+                var meta = Meta.ToMeta(model.Name);
+                model.MetaTitle = meta;
 
                 var result = dao.Update(model);
                 if (result)

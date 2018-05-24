@@ -1,0 +1,133 @@
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.428571429;
+    background-color: #FFF;
+}
+
+.login-box {
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+}
+
+.panel {
+    border-radius: 4px;
+}
+
+.panel-info > .panel-heading {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}
+
+.form-control {
+    height: 34px;
+    border-radius: 4px;
+}
+
+.input-group-addon {
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    color: #555;
+    text-align: center;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+a {
+    color: #428bca;
+    text-decoration: none;
+}
+
+.btn-success {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #428bca;
+    border-color: #357ebd;
+}
+
+.btn {
+    padding: 0 12px;
+    line-height: 32px;
+    border-radius: 4px;
+}
+
+.col-md-3 {
+    line-height: 29px;
+}
+
+.dropdown-value {
+    text-align: left;
+    float: left;
+    display: block;
+}
+
+.dropdown-menu > li > a {
+    color: inherit;
+    padding: 5px 20px;
+}
+
+.dropdown-menu {
+    padding: 0;
+    margin-left: 5px;
+}
+
+.w120 {
+    width: 120px;
+    text-align: center;
+    margin-top: 200px;
+}
+
+.modal-content {
+    border-radius: 4px;
+}
+
+.w450 {
+    width: 450px;
+}
+
+.modal-header, .modal-footer {
+    padding: 10px;
+    margin-top: 0px;
+}
+
+.modal-body {
+    padding: 10px;
+}
+
+.alert {
+    margin-bottom: 6px;
+}
+
+.login-box .alert {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.form-horizontal .control-label {
+    padding-top: 2px;
+}
+
+.fileinput-button input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    opacity: 0;
+    -ms-filter: 'alpha(opacity=0)';
+    font-size: inherit;
+    direction: ltr;
+    cursor: pointer;
+    width: 85px;
+}

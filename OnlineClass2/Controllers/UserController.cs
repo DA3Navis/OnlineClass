@@ -130,6 +130,8 @@ namespace OnlineClass2.Controllers
                     // Lưu giá trị
                     userSession.UserName = user.UserName;
                     userSession.UserID = user.ID;
+                    userSession.ListEnroll = new EnrollmentDao().ListEnroll(user.ID);
+                    userSession.ListDone = null;
                     Session.Add(name: CommonConstants.USER_SESSION, value: userSession);
                     // Về trang chủ
                     return RedirectToAction("Index", "Home");
@@ -205,6 +207,7 @@ namespace OnlineClass2.Controllers
                             mail.To.Add(model.Email);
                             smtp.Send(mail);
                         }
+                        ViewBag.Success = "Gửi thành công";
                     }
                     else
                         ModelState.AddModelError("", "Email không đúng với tài khoản");
@@ -221,7 +224,7 @@ namespace OnlineClass2.Controllers
 
         [HttpPost]
         public ActionResult Recovery(PasswordRecovery model)
-        {          
+        {
             if (ModelState.IsValid)
             {
                 var dao = new UserDao();
@@ -240,8 +243,7 @@ namespace OnlineClass2.Controllers
                         {
                             user.Password = Encrytor.MD5Hash(model.Password);
                             db.SaveChanges();
-                            ModelState.AddModelError("", "Đổi mật khẩu thành công");
-                            return RedirectToAction("Login", "User");
+                            ViewBag.Success = "Đổi mật khẩu thành công";
                         }
                     }
                     else
@@ -249,6 +251,30 @@ namespace OnlineClass2.Controllers
                 }
             }
             return View(model);
+        }
+
+        public ActionResult EnrollCourse()
+        {
+
+            return View();
+        }
+
+        public ActionResult Profile(long userID)
+        {
+            var user = new UserDao().ViewDetail(userID);
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(string userName, string Name, string Email, string Phone)
+        {
+            var dao = new UserDao();
+            var user = dao.GetById(userName);
+            user.Name = Name;
+            user.Email = Email;
+            user.Phone = Phone;
+            var result = dao.Update(user);
+            return Json(new { success = true });
         }
     }
 }

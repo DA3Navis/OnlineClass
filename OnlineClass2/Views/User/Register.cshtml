@@ -1,30 +1,16 @@
 ﻿@model OnlineClass2.Models.RegisterModel
 
+
 @{
-    Layout = null;
+    ViewBag.Title = "Đăng nhập";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
+@using (Html.BeginForm("Register", "User", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Register</title>
-</head>
-<body>
-    @using (Html.BeginForm("Register", "User", FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-group">
-            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
-            @if (ViewBag.Success != null)
-            {
-                <div class="alert alert-success">@ViewBag.Success</div>
-            }
-        </div>
-
-        <div class="form-horizontal">
+    @*<div class="form-horizontal">
             <h4>Đăng ký</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -81,11 +67,91 @@
                     <input type="submit" value="Đăng ký" class="btn btn-default" />
                 </div>
             </div>
-        </div>
-    }
+        </div>*@
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
+    <div id="signupbox" style="margin-top: 50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title">Đăng ký</div>
+                <div style="float:right; font-size: 85%; position: relative; top:-15px"><a id="signinlink" href="/dang-nhap">Đăng nhập</a></div>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                    @if (ViewBag.Success != null)
+                    {
+                        <div class="alert alert-success">@ViewBag.Success</div>
+                    }
+                </div>
+
+                <div class="form-group">
+                    <label for="username" class="col-md-3 control-label">Tài khoản</label>
+                    <div class="col-md-9">
+                        @*<input type="text" class="form-control" name="regusername" placeholder="Tài khoản đăng nhập" id="txtUserName">*@
+                        @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @placeholder = "Tài khoản đăng nhập", @id = "txtUserName" })
+                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                        <div style="font-size:80%; color:red">(*) Tài khoản đăng nhập không chứa ký tự Unicode và dấu cách</div>
+                    </div>
+                    <div style="clear:both"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="username" class="col-md-3 control-label">Mật khẩu</label>
+                    <div class="col-md-9">
+                        @*<input type="password" class="form-control" name="regpassword" placeholder="Mật khẩu đăng nhập" id="txtRegPassword">*@
+                        @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "Mật khẩu đăng nhập", @id = "txtRegPassword" })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+                    <div style="clear:both"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="username" class="col-md-3 control-label">Xác nhận mật khẩu</label>
+                    <div class="col-md-9">
+                        @*<input type="password" class="form-control" name="regpasswordreinput" placeholder="Xác nhận mật khẩu" id="txtConfirmPassword">*@
+                        @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control", @placeholder = "Xác nhận mật khẩu", @id = "txtConfirmPassword" })
+                        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                    </div>
+                    <div style="clear:both"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="col-md-3 control-label">E-mail</label>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Ví dụ: abc@testerhn.com", @id = "txtEmail" })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        @*<input type="text" class="form-control" name="email" placeholder="Ví dụ: abc@testerhn.com" id="txtEmail">*@
+                    </div>
+                    <div style="clear:both"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="firstname" class="col-md-3 control-label">Họ và tên</label>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Họ và tên", @id = "txtFullName" })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        @*<input type="text" class="form-control" name="fullname" placeholder="Họ và tên" id="txtFullName">*@
+                    </div>
+                    <div style="clear:both"></div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-md-3 control-label">Điện thoại</label>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", @placeholder = "Điện thoại", @id = "txtMobilePhone" })
+                        @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                        @*<input type="tel" class="form-control" name="mobilephone" placeholder="Điện thoại" id="txtMobilePhone">*@
+                    </div>
+                    <div style="clear:both"></div>
+                </div>
+                <div class="form-group">
+                    <!-- Button -->
+                    <div class="col-md-offset-3 col-md-9" style="text-align:right;">
+                        <input type="submit" value="Đăng ký" class="btn btn-info" id="btn-signup" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
-</body>
-</html>
+}
+
